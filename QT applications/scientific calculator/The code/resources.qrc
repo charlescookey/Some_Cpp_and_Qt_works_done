@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/btn">
+        <file>button/d1.png</file>
+        <file>button/do.png</file>
+        <file>button/h1.png</file>
+        <file>button/ho.png</file>
+        <file>button/tl.png</file>
+        <file>button/tlp.png</file>
+        <file>button/tr.png</file>
+        <file>button/trp.png</file>
+        <file>button/Untitled 1.png</file>
+        <file>button/calculator.png</file>
+    </qresource>
+</RCC>
