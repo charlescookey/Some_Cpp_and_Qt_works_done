@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Opening</class>
+ <widget class="QMainWindow" name="Opening">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Player Choice</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton#pushButton{
+font: 87 45pt &quot;Arial Black&quot;;
+color: rgb(255,255,255);
+background-color: rgb(255,0,0);
+}
+QPushButton#pushButton:hover{
+background-color: rgb(180,0,0);
+}
+QPushButton#pushButton:pressed{
+background-color: rgb(100,0,0);
+}
+
+QPushButton#pushButton_2{
+font: 87 45pt &quot;Arial Black&quot;;
+color: rgb(255,255,255);
+background-color: rgb(0,255,0);
+}
+QPushButton#pushButton_2:hover{
+background-color: rgb(0,180,0);
+}
+QPushButton#pushButton_2:pressed{
+background-color: rgb(0,100,0);
+}
+
+QPushButton#pushButton_3{
+font: 87 45pt &quot;Arial Black&quot;;
+color: rgb(255,255,255);
+background-color: rgb(0,0,255);
+}
+QPushButton#pushButton_3:hover{
+background-color: rgb(0,0,180);
+}
+QPushButton#pushButton_3:pressed{
+background-color: rgb(0,0,100);
+}
+
+QPushButton#pushButton_4{
+font: 87 45pt &quot;Arial Black&quot;;
+color: rgb(255,255,255);
+background-color: rgb(255,255,0);
+}
+QPushButton#pushButton_4:hover{
+background-color: rgb(180,180,0);
+}
+QPushButton#pushButton_4:pressed{
+background-color: rgb(100,100,0);
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,4">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:28pt; font-weight:600; color:#ff0000;&quot;&gt;How&lt;/span&gt;&lt;span style=&quot; font-size:28pt; font-weight:600; color:#55ff00;&quot;&gt; m&lt;/span&gt;&lt;span style=&quot; font-size:28pt; font-weight:600; color:#00ff00;&quot;&gt;any&lt;/span&gt;&lt;span style=&quot; font-size:28pt; font-weight:600;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-size:28pt; font-weight:600; color:#ffff00;&quot;&gt;pla&lt;/span&gt;&lt;span style=&quot; font-size:28pt; font-weight:600; color:#0000ff;&quot;&gt;yers?&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>1</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>2</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>3</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_4">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>4</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
