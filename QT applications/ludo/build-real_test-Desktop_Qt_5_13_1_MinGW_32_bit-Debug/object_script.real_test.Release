@@ -1,0 +1,15 @@
+release/choice.o
+release/dice.o
+release/dicepath.o
+release/end.o
+release/ludoboard.o
+release/main.o
+release/mainwindow.o
+release/opening.o
+release/token.o
+release/moc_choice.o
+release/moc_dice.o
+release/moc_end.o
+release/moc_mainwindow.o
+release/moc_opening.o
+release/moc_token.o

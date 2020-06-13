@@ -1,0 +1,15 @@
+debug/choice.o
+debug/dice.o
+debug/dicepath.o
+debug/end.o
+debug/ludoboard.o
+debug/main.o
+debug/mainwindow.o
+debug/opening.o
+debug/token.o
+debug/moc_choice.o
+debug/moc_dice.o
+debug/moc_end.o
+debug/moc_mainwindow.o
+debug/moc_opening.o
+debug/moc_token.o
