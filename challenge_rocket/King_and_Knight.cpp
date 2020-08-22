@@ -1,3 +1,8 @@
+/*
+ByteDance Security Engineer Recruitment Challenge
+Given the position of a number of knights on the board, determine if the king is in checkmate
+*/
+
 #include <iostream>
 #include <vector>
 
