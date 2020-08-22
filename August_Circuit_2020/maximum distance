@@ -1,0 +1,62 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+
+int distance(int b , std::vector<int> &vec){
+	int a = 0;
+	int z{0};
+	for(int i = 0 ; i < vec.size() ; i++){
+		if(vec[i] == b){
+			a  = i;
+			break;
+		}
+	}
+	for(int i = vec.size() ; i >= a ; i--){
+		if(vec[i] == b){
+			z  = i;
+			break;
+		}
+	}
+	if(z != 0)return (z-a)+1;
+
+	return -1;
+};
+
+int main(){
+	int entry{0};
+	int temp{0};
+	int a,b,c,d;
+	std::vector<int> vec{};
+	std::vector<int> ans{};
+
+	std::cin>>entry;
+	for(int i =0 ; i< entry; i++){
+		std::cin>>temp;
+		vec.push_back(temp);
+	};
+	std::cin>>entry;
+
+	while(std::cin>>a)
+		ans.push_back(a);
+
+	for(int i =0 ; i< ans.size(); i++){
+		if(ans[i] == 1){
+			std::for_each(vec.begin() , vec.end() , [&](int& n){
+				if(n>=ans[i+1] && n<=ans[i+2])
+					n += ans[i+3]; 
+			});
+			i+=3;
+		}else if(ans[i] == 2){
+			std::for_each(vec.begin(),vec.end(), [&](int& n){
+				if(n>=ans[i+1] && n<=ans[i+2])
+					n *= ans[i+3]; 
+			});
+			i+=3;
+		}else{
+			std::cout<<distance(ans[i+1] , vec)<<"\n";
+			i+=1;
+		}
+	}
+};
+	
