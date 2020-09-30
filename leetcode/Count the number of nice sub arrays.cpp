@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int numberOfSubarrays(vector<int>& nums, int k) {
+        vector<int> indexes{0};
+        for(int i =0; i < nums.size() ; i++){
+            if(nums[i] % 2 != 0){
+                indexes.push_back(i+1);
+            }
+            
+        }
+        if(k > indexes.size())return 0;
+        
+        int l= 0;
+        int r = 0;
+        int sum=0;
+
+        for(int i =0; i < indexes.size() - k ; i++){
+            l = (indexes[i+1] - indexes[i]) -1;
+            if(indexes.size() > i+k+1){
+                r = (indexes[i+k+1] - indexes[i+k]) -1;
+            }else if(indexes.size() > i+k){
+                r = (nums.size() - indexes[i+k]) ;
+            }else{
+                r =0;
+            }
+            //std::cout<<"i at "<<i<<" "<<l << " "<<r<<endl;
+            sum += (l+1)*(r+1);
+        }
+        return sum;
+        
+    }
+};
