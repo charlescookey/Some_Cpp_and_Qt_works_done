@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int count = 0;
+        int temp = 0;
+        int last_stop = 0;
+        std::map<char , int> mapp;
+        for(int i = 0 ; i < s.size() ;i++){
+            if(mapp.count(s[i]) > 0){
+                if(mapp[s[i]] < last_stop){
+                    mapp[s[i]] = i;
+                    temp++;
+                }else{
+                    temp = i - mapp[s[i]];
+                    last_stop =mapp[s[i]];
+                    mapp[s[i]] = i;
+                }
+            }else{
+                temp++;
+                mapp[s[i]] = i;
+            }
+            if(temp>count)
+                count = temp;
+        }
+        return count;
+        
+    }
+};
