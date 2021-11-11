@@ -1,0 +1,104 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode *temp = l1;
+        ListNode *temp2 = l2;
+        ListNode *ans = new ListNode();
+        ListNode *ta = ans;
+        int a = 0;
+        int b =0;
+        int carry = 0;
+        int sum = 0;
+        while(temp != nullptr || temp2 != nullptr){
+            a = 0; b = 0; 
+            if(temp != nullptr){
+                a = temp->val;
+                temp = temp->next;
+            }
+            if(temp2 != nullptr){
+                b = temp2->val;
+                temp2 = temp2->next;
+            }
+            
+            sum = a+b+carry;
+            carry = sum/10;
+            sum %=10;
+            if(temp != nullptr || temp2 != nullptr){
+                ta->val = sum;
+                ta->next = new ListNode();
+                ta = ta->next;
+            }else{
+                if(carry ==0){
+                    ta->val = sum;
+                    ta->next = nullptr;
+                }else{
+                    ta->val = sum;
+                    ta->next = new ListNode(carry);
+                }
+            }
+        }
+        return ans;
+//below had 1565/1568 which was cause of lenght of input 1+e30 which even long long couldn't take
+//         ListNode *temp = l1;
+//         int index =0;
+//         unsigned long long first = 0;
+//         while(temp != nullptr){
+//             first+= (std::pow(10 ,index) * temp->val);
+//             index++; 
+//             temp = temp->next;
+//         }
+//         temp = l2;
+//         long long second = 0;
+//         index =0;
+//         while(temp != nullptr){
+//             second+= (std::pow(10 ,index) * temp->val);
+//             index++; 
+//             temp = temp->next;
+//         }
+//         //cout<<first<<" "<<second;
+        
+//         long long ans = first + second;
+//         cout<<ans<<" - ";
+//         if(ans<10){
+//             ListNode *answer = new ListNode();
+//             answer->val = ans;
+//             return answer;
+            
+//         }
+//         int indices = ans%10;
+//         cout<<indices<<" ";
+//         ListNode *next = new ListNode();
+//         ListNode *head = new ListNode(indices , next);
+//         ans/=10;
+//         while(ans>9){
+//             int index = ans%10;
+//             cout<<index<<" ";
+//             temp = new ListNode();
+//             next->val = index;
+//             next->next = temp;
+//             next = next->next;
+//             ans/=10;  
+            
+        
+//         }
+//         if(ans!=0){
+//         next->val = ans;
+//         next->next = nullptr;
+//         }
+        
+//         return head;
+        
+        
+        
+    }
+};
