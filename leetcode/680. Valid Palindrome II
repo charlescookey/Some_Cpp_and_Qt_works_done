@@ -1,0 +1,40 @@
+class Solution {
+public:
+    bool validPalindrome(string s) {
+        int i = 0;
+        int j = s.size() - 1;
+        int x =0 ;int y =0;
+        while(i < j){
+            if(s[i] == s[j]){
+                i++;
+                j--;
+            }else{
+                x = i+1;
+                y = j;
+                while(x < y){
+                    if(s[x] == s[y]){
+                        x++;
+                        y--;
+                    }else{
+                        break;
+                    }    
+                }
+                if(x >= y)return true;
+                x = i;
+                y =j-1;
+                while(x <y){
+                    if(s[x] == s[y]){
+                        x++;
+                        y--;
+                    }else{
+                        break;
+                    }   
+                }
+                if(x >= y)return true;
+                return false;
+            }
+        }
+        return true;
+        
+    }
+};
