@@ -1,0 +1,31 @@
+bool isBalanced(string s) {
+  std::stack<char> entry;
+  if(s.empty())return true;
+  // Write your code here
+  for(char a: s){
+    if(a == '[' || a == '{' || a == '(')
+      entry.push(a);
+    else{
+      switch(a){
+        case ']':
+          if(entry.top() == '[')entry.pop();
+          else return false;
+          break;
+        
+        case '}':
+          if(entry.top() == '{')entry.pop();
+        else return false;
+        break;
+        
+        case ')':
+        if(entry.top() == '(')entry.pop();
+        else return false;
+        break;
+        
+      }  
+    }
+  }
+  if(entry.empty())return true;
+  return false;
+  
+}
