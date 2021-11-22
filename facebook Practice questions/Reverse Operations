@@ -1,0 +1,28 @@
+Node* reverse(Node *head) {
+  // Write your code here
+  Node *curr = head , *temp = nullptr , *last = nullptr;
+  
+  while(curr != nullptr){
+    if(curr->data %2 ==0){
+      temp = curr;
+      while(temp != nullptr){
+        
+        if(temp->data %2 == 0){
+          last = temp;
+          temp = temp->next;
+        }
+        else
+          break;
+      }
+      std::swap(curr->data , last->data);
+      curr = last;
+        
+    }
+
+    curr = curr->next;
+  }
+  
+
+  return head;
+  
+}
