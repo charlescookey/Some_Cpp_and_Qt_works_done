@@ -1,0 +1,13 @@
+bool areTheyEqual(vector<int>& array_a, vector<int>& array_b){
+  // Write your code here
+  std::sort(array_a.begin() , array_a.end());
+  std::sort(array_b.begin() , array_b.end());
+  
+  if(array_a.size() != array_b.size())return false;
+  
+  for(int i = 0 ;i < array_a.size() ; i ++){
+    if(array_a[i] != array_b[i])return false;
+  }
+  
+  return true;
+}
