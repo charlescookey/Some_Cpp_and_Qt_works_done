@@ -1,0 +1,20 @@
+vector <int> CountSubarrays(vector <int> arr) {
+  std::map<int, int>hashmap{};
+  vector<int> answer{};
+
+  for (int i = 0; i < arr.size(); i++) {
+    int l = i - 1, r = i + 1, count = 1;
+    while (l >= 0) {
+      if (arr[i] > arr[l]) {
+        count++; l--;
+      }else break;
+      }
+      while (r <= arr.size() - 1) {
+        if (arr[i] > arr[r]) {
+          count++; r++;
+        }else break;
+      }
+    answer.push_back(count);
+    }
+  return answer;
+}
