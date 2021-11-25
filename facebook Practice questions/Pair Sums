@@ -1,0 +1,16 @@
+int numberOfWays(vector<int>& arr, int k) {
+  // Write your code here
+  std::map<int , int>hashmap{};
+  int count = 0;
+  for(int a: arr){
+    //cout<<k-a<<" "<<hashmap.count(k-a)<<" "<<hashmap.size()<<endl;
+    if(hashmap.count(k-a) > 0){
+      count+=hashmap[k-a];
+      hashmap[a]++;
+    }else{
+      hashmap[a]=1;
+    }
+  }
+  return count;
+  
+}
