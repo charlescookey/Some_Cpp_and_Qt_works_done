@@ -1,0 +1,22 @@
+int numPlayers(int k, vector<int> scores) {
+    std::map<int , int>hashmap{};
+    
+    for(int a:scores){
+        hashmap[a]++;
+    }
+    
+    std::sort(scores.rbegin() , scores.rend());
+    int rank = 0;
+    int index = 0;
+    int ans = 0 ;
+    while(rank < k){
+        if(scores[index] == 0 && hashmap.size() == 1)break;
+        int temp = hashmap[scores[index]];
+        ans += temp;
+        index+=temp;
+        rank+= temp;
+        std::cout<<index<<" "<<scores[index]<<" "<<temp<<" "<<rank<<" "<<ans<<endl;
+    }
+    return ans;
+
+}
