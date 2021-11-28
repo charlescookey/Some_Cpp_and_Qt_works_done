@@ -1,0 +1,16 @@
+bool balancedSplitExists(vector<int>& arr){
+  // Write your code here
+  int sum = 0;
+  for(int i : arr)
+    sum+=i;
+  
+  int lsum = 0;
+  for(int i : arr){
+    lsum += i;
+    sum -= i;
+    if(lsum == sum)
+      return true;
+    
+  }
+  return false;
+}
