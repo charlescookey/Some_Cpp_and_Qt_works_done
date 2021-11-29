@@ -1,0 +1,20 @@
+int countDistinctTriangles(vector <sides> arr) {
+  // Write your code here
+  std::map<std::tuple<long long , long long , long long> , int> hashmap{};
+  int count= 0 ;
+  
+  for(int i = 0 ; i < arr.size() ; i++){
+    vector<long long> temp{arr[i].a , arr[i].b , arr[i].c};
+    std::sort(temp.begin() , temp.end());
+    tuple<long long , long long , long long> tt {temp[0] , temp[1] , temp[2]};
+    
+    if(hashmap.count(tt) >0){
+      
+    }else{
+      count++;
+      hashmap[tt] =1;
+    }
+  }
+  
+  return count;
+}
