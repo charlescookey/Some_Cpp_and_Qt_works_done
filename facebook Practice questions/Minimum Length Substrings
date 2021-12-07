@@ -1,0 +1,31 @@
+int minLengthSubstring(string s, string t) {
+  // Write your code here
+  
+  std::map<char , int>hashmap{};
+  std::map<char , int>hashcounts{};
+  std::map<char , int>hashcountt{};
+  
+  for(int i =0 ; i < s.size() ; i++ ){
+    hashmap[s[i]] = i;
+  }
+  
+  for(int i =0 ; i < s.size() ; i++ ){
+    hashcounts[s[i]]++;
+  }
+  
+  for(int i =0 ; i < t.size() ; i++ ){
+    hashcountt[t[i]]++;
+  }
+  
+  int ans = 0;
+  for(char a : t){
+    if(hashmap.count(a) > 0){
+      if(hashcountt[a] !=  hashcounts[a])return -1;
+      ans = std::max(hashmap[a] , ans);
+    }else{
+      return -1;
+    }
+  }
+  return ans+1;  
+}
+
