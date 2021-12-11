@@ -1,0 +1,14 @@
+string findEncryptedWord(string s) {
+  // Write your code here
+  if(s.size() == 0)return "";
+  if(s.size() == 1)return s;
+  
+  int middle = s.size()/2;
+  if(s.size() % 2 == 0)middle--;
+  string ans{};
+  ans+=s[middle];
+  ans+=findEncryptedWord(s.substr(0 , middle));
+  ans+=findEncryptedWord(s.substr(middle+1));
+  
+  return ans;
+}
