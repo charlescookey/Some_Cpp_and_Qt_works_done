@@ -1,0 +1,29 @@
+int matchingPairs(string s, string t) {
+  // Write your code here
+  string s_missing{};
+  std::map<char , int> t_missing{};
+  
+  int same =0;
+  
+  
+  for(int i = 0 ; i < s.size(); i++){
+    if(s[i] == t[i]){
+      same++;
+    }else{
+      s_missing += s[i];
+      t_missing[t[i]] = 1;
+    }
+  }
+  
+  if(same == s.size())return same-=2;
+  
+  int end = std::min(2 , (int)s_missing.size());
+  
+  for(int i = 0 ; i < end  ; i++){
+    if(t_missing.count(s_missing[i]) > 0){
+      same++;      
+    }
+  }
+  return same;
+  
+}
