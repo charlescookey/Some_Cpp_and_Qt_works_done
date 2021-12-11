@@ -1,0 +1,22 @@
+vector <int> getMilestoneDays(vector <int> revenues, vector<int> milestones) {
+  // Write your code here
+  int sum  = 0;
+  vector<int> CumSum{};
+  vector<int> ans{};
+  for(int i = 0 ; i < revenues.size() ; i++){
+    sum += revenues[i];
+    CumSum.push_back(sum);
+  }
+  
+  
+  for(int i : milestones){
+    for(int index = 0 ; index < CumSum.size() ; index++){
+      if(CumSum[index] >= i ){
+        ans.push_back(index + 1);
+        break;
+      }
+    }
+  }
+  
+  return ans;
+}
