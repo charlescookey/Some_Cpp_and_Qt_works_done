@@ -1,0 +1,13 @@
+bool canGetExactChange(int targetMoney, vector<int>& denominations){
+  // Write your code here
+  for(int i = 0 ; i < denominations.size() ; i++){
+    int diff = targetMoney - denominations[i];
+    if(diff==0)return true;
+    
+    if(diff > 0){
+      bool a = canGetExactChange(diff , denominations);
+      if(a)return true;
+    }
+  }
+  return false;
+}
