@@ -1,0 +1,34 @@
+run time : 0ms
+
+class Solution {
+public:
+    int reverse(int x) {
+        bool a = true;
+        if (x < -1 * INT_MAX || x > INT_MAX )return 0; 
+        if(x < 0 ){x*=-1;a = false;}
+
+        long ans = 0 ;
+        while(x > 0){
+            int curr = x%10;
+            ans*=10;
+            ans+=curr;
+            
+            x/=10;
+        }
+        if(ans > 2147483648)return 0;
+        return a?ans:-1*ans;
+    }
+};
+
+run time : 4ms
+
+class Solution {
+public:
+    int reverse(int x) {
+        string ans = std::to_string(x);
+        std::reverse(ans.begin() , ans.end());
+        long ret = std::stol(ans);
+        if(ret > 2147483648)return 0;
+        return x > 0 ?ret : -1 * ret;
+    }
+};
