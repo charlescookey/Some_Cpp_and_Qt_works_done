@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int myAtoi(string s) {
+        long ans =0;
+        bool positive = true;
+        bool charP = false;
+        for(int i =0 ; i < s.size() ; i++ ){
+            char cur = s[i];
+            if(s[i] == ' '){
+                if(charP)break;
+                continue;
+            }
+            if(s[i] == '+'){
+                if(charP)break;
+                charP = true;
+                continue;
+            }
+            if(s[i] == '-'){
+                cout<<"entered here"<<endl;
+                if(charP)break;
+                charP = true;
+                positive =  false;
+                continue;
+            }
+            if(std::isdigit(s[i])){
+                if (ans >= 2147483648)return positive? 2147483647 : -2147483648;
+                charP = true;
+                ans*= 10;
+                ans+= s[i] - '0';
+            }else break;
+            //if(std::isalpha(s[i]))break;
+            
+        }
+        if (ans >= 2147483648)return positive? 2147483647 : -2147483648;
+        return positive?ans : -1 * ans;
+        
+    }
+};
