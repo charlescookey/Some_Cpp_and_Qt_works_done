@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        int l = 0 ; int r = nums.size()-1;
+        
+        while(l <= r){
+            int curr = ((r-l)/2) +l;
+            
+            //if(nums[curr] == target)return curr;
+            //else 
+            if(nums[curr] < target)l = curr+1;
+            else{r = curr-1;}
+        }
+        return l;
+    }
+};
