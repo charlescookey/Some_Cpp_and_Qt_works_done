@@ -1,0 +1,17 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        int lastSpace =0;
+        for(int i= 0 ; i < s.size() ; i++){
+            if(s[i] == ' '){
+                std::reverse(s.begin()+lastSpace , s.begin() +i);
+                lastSpace=i+1;
+            }
+        }
+        std::reverse(s.begin() + lastSpace , s.end());
+        return s;
+        
+    }
+};
+
+Using the stringstream is another good option.
