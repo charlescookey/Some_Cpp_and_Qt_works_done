@@ -1,0 +1,14 @@
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        std::map<int , int> hashmap;
+        
+        for(int a: nums){
+            if(hashmap.count(a) > 0)
+                return true;
+            hashmap[a] = 1;
+        }
+        return false;
+        
+    }
+};
