@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        std::map<char , int> hashmap;
+        
+        for(char a:s){
+            hashmap[a]++;
+        }
+    
+        for(int i =0; i < s.size() ; i++){
+            if(hashmap[s[i]] == 1)return i;
+        }
+        
+        return -1;
+        
+    }
+};
