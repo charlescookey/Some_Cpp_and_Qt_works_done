@@ -1,0 +1,50 @@
+class Solution {
+public:
+    string frequencySort(string s) {
+        std::map<char, int> hashmap{};
+        vector<std::pair<char , int>> freq;
+        
+        for(char a:s){
+            hashmap[a]++;
+        }
+        
+        string ans{};
+
+        for(std::pair<char , int> a: hashmap){
+            freq.push_back(a);
+        }
+        
+        std::sort(freq.begin() , freq.end() , [](const std::pair<char, int> a, const std::pair<char, int> b){
+            return a.second > b.second;            
+        });
+        
+        for(std::pair<char , int> x: freq){
+            string temp(x.second , x.first);
+            ans+=temp;
+        }
+        return ans;
+        
+    }
+};
+
+
+
+an O(n) solution that was posted
+class Solution {
+public:
+    string frequencySort(const string& s) {
+        int n = s.size();
+        unordered_map<char, int> cnt;
+        for (char c : s)  cnt[c] += 1;
+        
+        vector<vector<char>> bucket(n+1);
+        for (auto [c, f] : cnt)
+            bucket[f].push_back(c);
+        
+        string ans;
+        for (int freq = n; freq >= 1; --freq)
+            for (char c : bucket[freq]) 
+                ans.append(freq, c);
+        return ans;
+    }
+};
