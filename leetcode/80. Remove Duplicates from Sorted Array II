@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        std::map<int , int> hashmap{};
+        std::vector<int> duplicates{};
+        
+        for(int i =0; i < nums.size() ; i++){
+            hashmap[nums[i]]++;            
+            if(hashmap[nums[i]] > 2) duplicates.push_back(i);
+        }
+        
+        
+        for(int i = duplicates.size() -1 ; i > -1 ; i--){
+            nums.erase(nums.begin() + duplicates[i]);
+        }
+        
+        return nums.size();
+        
+    }
+};
+
+
+
+saw a wayyyy better solution in the discuss
+
+int removeDuplicates(vector<int>& nums) {
+    int i = 0;
+    for (int n : nums)
+        if (i < 2 || n > nums[i-2])
+            nums[i++] = n;
+    return i;
+}
