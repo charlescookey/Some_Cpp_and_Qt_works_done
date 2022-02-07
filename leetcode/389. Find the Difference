@@ -1,0 +1,35 @@
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        vector<int> hashmap(256 ,0);
+        vector<int> hashmap_b(256 ,0);
+        
+        for(char a: s){
+            hashmap[a]++;
+        }
+        for(char a: t){
+            hashmap_b[a]++;
+        }
+        
+        for(char a: t){
+            if(hashmap[a] != hashmap_b[a]) return a;
+        }
+        
+        return 'z';
+        
+    }
+};
+
+
+wayyyyy better solution using bit manipulation
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        char r=0;
+        for(char c:s) r ^=c;
+        for(char c:t) r ^=c;
+        return r;
+    }
+};
+
+can be done with one loop, since we know t = S+1
