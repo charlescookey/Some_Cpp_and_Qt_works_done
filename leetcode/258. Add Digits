@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int addDigits(int num) {
+        int ans = 0;
+        
+        do{
+            ans =0;
+            while(num > 0){
+                ans+= num%10;
+                num/=10;
+            }
+            if(ans > 9){
+                num = ans;
+            }
+        }while(ans > 9);
+        
+        return ans;
+    }
+};
+
+
+saw a wayyyy better solution, One line
+
+int addDigits(int num) {
+	return 1 + (num - 1) % 9;
+}
+
+explanation
+
+https://leetcode.com/problems/add-digits/discuss/1754049/Easy-O(1)-Explanation-with-Example
