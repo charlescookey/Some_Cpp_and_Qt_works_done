@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+        std::map<int , int> hashmap{};
+        int count =0;
+        for(int i = nums.size() -1 ; i>-1 ;i--){
+            
+            if(hashmap.count(nums[i]) < 1){
+                
+                if(hashmap.count(nums[i] - k) > 0){
+                    cout<<nums[i]<<" "<<i<<" "<<hashmap.size()<<endl;
+                    count++;
+                }
+
+                if(hashmap.count(nums[i] + k) > 0 && k!= 0){
+                    cout<<nums[i]<<" "<<i<<" "<<hashmap.size()<<endl;
+                    count++;
+                }
+            }
+
+            hashmap[nums[i]]++;
+        }
+        
+        if( k == 0)
+            for(auto[a ,b] : hashmap)
+                if(b > 1)count++;
+        
+        return count;
+        
+    }
+};
+
+
+
+Better Solution by Author: github.com/lzl124631x
+
+class Solution {
+public:
+  int findPairs(vector<int>& nums, int k) {
+    if (k < 0) return 0;
+    unordered_map<int, int> m;
+    for (int n : nums) m[n]++;
+    int cnt = 0;
+    for (auto p : m) {
+      if ((!k && p.second > 1)
+        || (k && m.count(p.first + k))) ++cnt;
+    }
+    return cnt;
+  }
+};
