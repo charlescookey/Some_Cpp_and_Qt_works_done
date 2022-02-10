@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int maxSatisfaction(vector<int>& satisfaction) {
+        
+        std::sort(satisfaction.begin(), satisfaction.end());
+        
+        int max =0;
+        for(int i =0 ; i < satisfaction.size() ; i++){
+            int temp =0;
+            int x =1;
+            for (int j =i ; j < satisfaction.size() ; j++){
+                temp+= satisfaction[j]*(x++);
+            }
+            max = std::max(max, temp);
+        }
+        return max;
+        
+    }
+};
