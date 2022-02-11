@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int countMatches(vector<vector<string>>& items, string ruleKey, string ruleValue) {
+        int key =0;
+        if(ruleKey == "type")key =0;
+        else if(ruleKey == "color")key =1;
+        else key =2;
+        
+        
+        int count = 0;
+        for(auto a: items){
+            if(a[key] == ruleValue)count++;
+        }
+        
+        return count;
+        
+    }
+};
