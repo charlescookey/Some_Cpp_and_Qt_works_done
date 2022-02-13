@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int numberOfBeams(vector<string>& bank) {
+        vector<int> counts{};
+        int prev =0;
+        int ans=0;
+        for(string a:bank){
+            int i = std::count(a.begin() , a.end() ,'1');
+            
+            if(i != 0){
+                if(prev == 0)prev =i;
+                else{
+                    ans += prev*i;
+                    prev =i;
+                }
+                
+            }
+        }
+        return ans;
+        
+        
+    }
+};
