@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        int max = maxx(root , 0);
+        return max;
+    }
+    
+    int maxx(TreeNode* root , int count){
+        
+        if(root == nullptr)return count;
+        count++;
+        int a = maxx(root->right , count);
+        int b = maxx(root->left , count);
+        
+        return std::max(a , b);
+        
+        
+    }
+};
+
+better solution
+
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if(root  == nullptr)return 0;
+        return std::max(maxDepth(root->left) , maxDepth(root->right)) + 1;
+    }
+};
