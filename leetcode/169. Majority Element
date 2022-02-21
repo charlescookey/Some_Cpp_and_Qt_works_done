@@ -1,0 +1,52 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        std::map<int , int> hashmap{};
+        
+        for(int i:nums){
+            hashmap[i]++;
+        }
+        
+        int max =0, maxvalue = 0;
+        for(auto [a ,b]: hashmap){
+            if(b > maxvalue){
+                maxvalue = b;
+                max =a;
+            }
+        }
+        
+        return max;
+    }
+};
+
+
+
+here's an idea on how the next solution works; Its really funny considering the input constraints
+public class Solution {
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+	  int len = nums.length;
+	  return nums[len/2];
+    }
+}
+
+here's the better solution
+
+https://www.cs.utexas.edu/~moore/best-ideas/mjrty/
+
+int majorityElement(vector<int> &num) {
+    int majorityIndex = 0;
+    for (int count = 1, i = 1; i < num.size(); i++) {
+        num[majorityIndex] == num[i] ? count++ : count--;
+        if (count == 0) {
+            majorityIndex = i;
+            count = 1;
+        }
+    }
+        
+    return num[majorityIndex];
+}
+
+and here are some more 
+
+https://leetcode.com/problems/majority-element/discuss/51612/C%2B%2B-6-Solutions
