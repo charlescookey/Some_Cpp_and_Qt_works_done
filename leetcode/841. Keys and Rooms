@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool canVisitAllRooms(vector<vector<int>>& rooms) {
+        std::stack<int> order{};
+        std::set<int> visited{};
+        
+        order.push(0);
+        while(!order.empty()){
+            
+            int curr = order.top();
+            order.pop();
+            if(visited.count(curr)>0)continue;
+            visited.insert(curr);
+            
+            for(int a :rooms[curr]){
+                order.push(a);                
+            }
+        }
+        if(visited.size() == rooms.size())return true;
+        
+        return false;
+    }
+};
