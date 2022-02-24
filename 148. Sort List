@@ -1,0 +1,25 @@
+//this is not correct, it works but it shouldn't be a solution. The si=olution is acc in https://leetcode.com/problems/sort-list/solution/
+
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        std::vector<int> items;
+        
+        ListNode* temp = head;
+        
+        while(temp != nullptr){
+            items.push_back(temp->val);
+            temp = temp->next;
+        }
+        
+        temp = head;
+        std::sort(items.begin() , items.end());
+        
+        for(int a: items){
+            temp->val = a;
+            temp = temp->next;
+        }
+        
+        return head;
+    }
+};
