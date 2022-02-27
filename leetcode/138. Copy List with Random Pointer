@@ -1,0 +1,65 @@
+class Solution {
+public:
+    Node* copyRandomList(Node* head) {
+        
+        std::map<Node* , Node*> hashmap;
+        Node* temp = head;
+        
+        while(temp){
+            hashmap[temp] = new Node(temp->val);
+            temp = temp->next;
+        }
+        
+        temp = head;
+        
+        while(temp){
+            hashmap[temp]->next = hashmap[temp->next];
+            hashmap[temp]->random = hashmap[temp->random];
+            temp = temp->next;      
+        }
+        
+        return hashmap[head];
+        
+    }
+};
+
+same idea , less organized but seems to be faster (Original idea)
+
+// class Solution {
+// public:
+//     Node* copyRandomList(Node* head) {
+        
+//         if(!head)return nullptr;
+        
+//         Node* newhead = new Node(0);
+//         Node* temp = head , *curr = newhead , *next = nullptr;
+//         std::map<Node* , Node*> hashmap{};
+        
+//         hashmap[nullptr] = nullptr;
+//         while(temp){
+//             curr->val = temp->val;
+            
+//             if(!temp->next)next = nullptr;
+//             else next = new Node(0);
+            
+//             hashmap[temp] = curr;
+            
+//             curr->random = nullptr;
+            
+//             curr->next = next;
+//             curr = next; 
+//             temp = temp->next;
+//         }
+//         curr = nullptr;
+        
+//         temp = head; curr = newhead;
+//         while(curr){
+//             curr->random = hashmap[temp->random];
+//             curr = curr->next;
+//             temp = temp->next;      
+//         }
+        
+//         return newhead;
+        
+//     }
+// };
