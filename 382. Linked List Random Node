@@ -1,0 +1,39 @@
+//Basic solution
+
+class Solution {
+public:
+    Solution(ListNode* head) {
+        
+        while(head){
+            List.push_back(head->val);
+            head = head->next;
+        }
+    }
+    
+    int getRandom() {
+        return List[rand() % List.size()];
+    }
+    vector<int> List{};
+};
+
+// i saw a better solution
+//Reservoir Sampling https://en.wikipedia.org/wiki/Reservoir_sampling
+class Solution {
+public:
+    ListNode *head = NULL;
+    
+    Solution(ListNode* head) {
+        this->head = head;
+    }
+    
+    int getRandom() {
+        int ans = 0, i = 1;
+        ListNode *p = this->head;
+        while (p) {
+            if (rand() % i == 0) ans = p->val; // replace ans with i-th node.val with probability 1/i
+            i ++;
+            p = p->next;
+        }
+        return ans;
+    }
+};
