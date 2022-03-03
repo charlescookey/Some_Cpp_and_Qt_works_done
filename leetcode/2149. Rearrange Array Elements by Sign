@@ -1,0 +1,37 @@
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        vector<int> positive{};
+        vector<int> negative{};
+        
+        for(int i:nums){
+            if(i > -1)positive.push_back(i);
+            else negative.push_back(i);
+        }
+        
+        for(int i=0 ; i < nums.size()/2 ; i++){
+            nums[(i*2)]= positive[i];
+            nums[(i*2)+1] = negative[i];
+        }
+        
+        return nums;
+    }
+};
+
+Here's a lot better solution interns of space and speed, 2 ptr method
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        int positive =0;
+        int negative = 1;
+        
+        vector<int> ans(nums.size() ,0);
+        
+        for(int i:nums){
+            if(i > -1)ans[positive] =i , positive+=2;
+            else ans[negative] =i , negative += 2;
+        }
+        
+        return ans;
+    }
+};
