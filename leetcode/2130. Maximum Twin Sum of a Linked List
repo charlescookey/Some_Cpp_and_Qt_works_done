@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int pairSum(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        
+        //find the middle
+        while(fast->next && fast->next->next){
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+        
+        fast = nullptr;
+        ListNode* prev = nullptr;
+        
+        //reverse list from middle
+        while(slow){
+            fast = slow->next;
+            slow->next = prev;
+            
+            prev = slow;
+            slow = fast;
+        }
+        
+        //add the top and end and come inwards
+        int max =0;
+        fast = head;
+        while(prev && fast){
+            max = std::max(max ,prev->val + fast->val);
+            fast = fast->next;
+            prev = prev->next;           
+        }
+        
+        return max;
+    }
+};
