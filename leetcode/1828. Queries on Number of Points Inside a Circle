@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> countPoints(vector<vector<int>>& points, vector<vector<int>>& queries) {
+        vector<int> ans(queries.size() ,0);
+        for(int i =0 ; i < queries.size() ; i++){
+            for(auto b : points){
+                if(InsideCircle(queries[i] ,b))ans[i]++;
+            }
+        }     
+        return ans;    
+    }
+    bool InsideCircle(vector<int>& query , vector<int>& point){
+        return sqrt(pow(query[0] - point[0] , 2) + pow(query[1] - point[1] , 2)) <= query[2];       
+    }
+};
+
+
+there's a better solution that involves sorting, don't quite understand it yet
+https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/discuss/1182639/K-D-tree-solution-%2B-Follow-up-with-solutions-overview-C%2B%2B
+https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/discuss/1206199/C%2B%2B-Java-Easy-Fastest-using-Binary-Search-and-Follow-up-Solution-Explanation
