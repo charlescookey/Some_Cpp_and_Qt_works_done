@@ -16,5 +16,10 @@ public:
 
 
 there's a better solution that involves sorting, don't quite understand it yet
+
+https://www.geeksforgeeks.org/queries-count-point-lie-inside-circle/
+
+
 https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/discuss/1182639/K-D-tree-solution-%2B-Follow-up-with-solutions-overview-C%2B%2B
 https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/discuss/1206199/C%2B%2B-Java-Easy-Fastest-using-Binary-Search-and-Follow-up-Solution-Explanation
+
