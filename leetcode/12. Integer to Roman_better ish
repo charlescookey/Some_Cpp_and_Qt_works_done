@@ -1,0 +1,47 @@
+class Solution {
+public:
+string answer = "";
+stringstream rrr;
+string intToRoman(int num) {
+    int b = num%1000;
+    int c = b%100;
+    if(num/1000 > 0){unit('M',' ',' ',num/1000);}
+    if(b/100 > 0){unit('C','D','M',b/100);}
+    if(c/10 > 0){unit('X','L','C',c/10);}
+    unit('I','V','X',num%10);
+answer = rrr.str();    
+return answer;
+};
+void unit(char a,char b,char c,int x){
+    switch(x){
+        case 1 :
+            rrr<<a;
+            break;
+        case 2 :
+            rrr<<a<<a;
+            break;
+        case 3 :
+            rrr<<a<<a<<a;
+            break;
+        case 4 :
+            rrr<<a<<b;
+            break;
+        case 5 :
+            rrr<<b;
+            break;
+        case 6 :
+            rrr<<b<<a;
+            break;
+        case 7 :
+            rrr<<b<<a<<a;
+            break;
+        case 8 :
+            rrr<<b<<a<<a<<a;
+            break;
+        case 9 :
+            rrr<<a<<c;
+            break;
+        default:
+            answer+="";
+};};
+};
