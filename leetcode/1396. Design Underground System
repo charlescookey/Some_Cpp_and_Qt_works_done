@@ -1,0 +1,41 @@
+class UndergroundSystem {
+public:
+    UndergroundSystem() {
+        
+    }
+    
+    void checkIn(int id, string stationName, int t) {
+        CheckInTimes[id] = {stationName , t};
+    }
+    
+    void checkOut(int id, string stationName, int t) {
+        if(CheckInTimes.count(id)>0){
+            string entrystation = CheckInTimes[id].first;
+            int entryTime = CheckInTimes[id].second;
+            
+            
+            TotalTimesAndCount[{entrystation , stationName}].first += t - entryTime;
+            TotalTimesAndCount[{entrystation , stationName}].second++;
+        }
+    }
+    
+    double getAverageTime(string startStation, string endStation) {
+        if(TotalTimesAndCount.count({startStation , endStation})>0){
+            return (double)TotalTimesAndCount[{startStation , endStation}].first / TotalTimesAndCount[{startStation , endStation}].second;
+        }
+        
+        return 0;
+        
+    }
+private:
+    std::map<int , std::pair<string , int>> CheckInTimes{};
+    std::map<std::pair<string , string> , std::pair<int , int>> TotalTimesAndCount{};
+};
+
+/**
+ * Your UndergroundSystem object will be instantiated and called as such:
+ * UndergroundSystem* obj = new UndergroundSystem();
+ * obj->checkIn(id,stationName,t);
+ * obj->checkOut(id,stationName,t);
+ * double param_3 = obj->getAverageTime(startStation,endStation);
+ */
