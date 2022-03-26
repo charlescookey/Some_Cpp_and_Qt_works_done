@@ -1,0 +1,43 @@
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+    Node* next;
+
+    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val, Node* _left, Node* _right, Node* _next)
+        : val(_val), left(_left), right(_right), next(_next) {}
+};
+*/
+
+class Solution {
+public:
+    Node* connect(Node* root) {
+        vector<Node*> frontier{};
+        frontier.push_back(root);
+        
+        if(!root)return nullptr;
+        
+        while(!frontier.empty()){
+            vector<Node*> next{};
+            
+            for(int i = 0; i < frontier.size() ; i++){
+                if(i == frontier.size() -1){
+                    frontier[i]->next = nullptr;
+                }else{
+                    frontier[i]->next = frontier[i+1];
+                }
+                if(frontier[i]->left){next.push_back(frontier[i]->left);}
+                if(frontier[i]->right){next.push_back(frontier[i]->right);}
+            }
+            frontier = next;
+        }
+        return root;
+    }
+};
