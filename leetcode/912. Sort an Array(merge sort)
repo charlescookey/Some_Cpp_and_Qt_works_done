@@ -1,0 +1,41 @@
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        int half = (nums.size()/2);
+        vector<int> a(nums.begin() , nums.begin() + half);
+        vector<int> b(nums.begin()+half , nums.end());
+        
+        if(a.size()>1)a = sortArray(a);
+        if(b.size()>1)b = sortArray(b);
+        
+        return Merge(a ,b);        
+    }
+    
+    vector<int> Merge(vector<int> a , vector<int> b){
+        if(a.empty())return b;
+        if(b.empty())return a;
+        
+        int i =0 , j =0;
+        
+        vector<int> ans{};
+        
+        while(i < a.size() && j < b.size()){
+            if(a[i] > b[j]){
+                ans.push_back(b[j]);
+                j++;
+            }else{
+                ans.push_back(a[i]);
+                i++;
+            }
+        }
+        
+        if(i < a.size()){
+            ans.insert(ans.end() , a.begin()+i , a.end());
+        }
+        if(j < b.size()){
+            ans.insert(ans.end() , b.begin()+j , b.end());
+        }
+        return ans;
+    }
+    
+};
