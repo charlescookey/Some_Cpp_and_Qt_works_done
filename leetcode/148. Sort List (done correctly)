@@ -1,0 +1,72 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* sortList(ListNode* head){
+        head = mergeSort(head);
+        return head;       
+    }
+    
+    ListNode* mergeSort(ListNode* head) {
+        if(!head)return nullptr;
+        ListNode* second = splitList(head);
+        if(head->next)head = mergeSort(head);
+        if(second && second->next)second = mergeSort(second);
+        
+        head = Merge(head , second);
+        return head;        
+    }
+    
+    ListNode* Merge(ListNode* head , ListNode * second){
+        if(!head)return second;
+        if(!second)return head;
+        
+        ListNode* newhead = new ListNode(0);
+        ListNode* temp = newhead;
+        
+        while(temp){
+            if(!head){
+                temp->next = second;
+                break;
+            }
+            if(!second){
+                temp->next = head;
+                break;
+            }
+            if(head->val >= second->val){
+                temp->next = second;
+                second = second->next;
+                temp=temp->next;
+            }else{
+                temp->next = head;
+                head = head->next;
+                temp = temp->next;
+            }
+        }
+        return newhead->next;
+    }
+    
+    ListNode* splitList(ListNode* head){
+        ListNode* fast = head;
+        ListNode* slow = head;
+        if(!head->next)slow = nullptr;
+        ListNode* half = head;
+        
+        while(fast && fast->next){
+            fast = fast->next->next;
+            half = slow;
+            slow = slow->next;
+        }
+        
+        half->next = nullptr;
+        return slow;
+    }
+};
