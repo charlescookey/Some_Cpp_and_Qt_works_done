@@ -1,0 +1,27 @@
+class Solution {
+public:
+    void  floodFill(vector<vector<int>>& image, int sr, int sc,int toCheck , int newColor , map<pair<int , int> , bool>& visited){
+        if(sr < 0 || sr >= image.size())return;
+        if(sc < 0 || sc >= image[0].size())return;
+        if(visited.count({sr , sc}) >0)return;
+        if(image[sr][sc] != toCheck)return;
+        
+        visited[{sr , sc}] = true;
+        image[sr][sc] = newColor;
+        
+        floodFill(image , sr-1 ,sc , toCheck , newColor , visited);
+        floodFill(image , sr+1 ,sc , toCheck , newColor , visited);
+        floodFill(image , sr ,sc-1 , toCheck , newColor , visited);
+        floodFill(image , sr ,sc+1 , toCheck , newColor , visited);
+        
+        
+    }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        map<pair<int , int> , bool> visited{};
+        
+        int tocheck = image[sr][sc];
+        floodFill(image , sr ,sc , tocheck , newColor , visited);
+        return image;
+        
+    }
+};
