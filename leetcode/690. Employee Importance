@@ -1,0 +1,37 @@
+/*
+// Definition for Employee.
+class Employee {
+public:
+    int id;
+    int importance;
+    vector<int> subordinates;
+};
+*/
+
+class Solution {
+public:
+    int getImportance(vector<Employee*> employees, int id) {
+        vector<int> frontier{};
+        map<int , Employee*> hashmap{};
+        for(Employee* a:employees){
+            hashmap[a->id] = a;
+            if(a->id == id){
+                frontier.push_back(a->id);
+            }
+        }
+        
+        int ans =0;
+        while(!frontier.empty()){
+            vector<int> next{};
+            for(int a:frontier){
+                ans+= hashmap[a]->importance;
+                next.insert(next.end() , hashmap[a]->subordinates.begin() , hashmap[a]->subordinates.end() );
+                //for(int i : hashmap[a]->subordinates){
+                //    next.push_back(i);
+                //}
+            }
+            frontier = next;
+        }
+        return ans;
+    }
+};
