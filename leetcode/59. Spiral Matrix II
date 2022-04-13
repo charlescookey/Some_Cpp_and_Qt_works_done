@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        int dir =0; 
+        vector<vector<int>> ans(n , vector<int>(n , 0));
+        int row =0 , col =0;
+        ans[0][0] =1;
+        int num =2;
+        
+        while(num <= n*n){
+            if(dir == 0){
+                if(col+1 < n && ans[row][col+1] == 0){
+                    col++;
+                    ans[row][col] = num;
+                    num++;
+                }else dir = 1;
+            }else if(dir == 1){
+                if(row+1 < n && ans[row+1][col] ==0){
+                    row++;
+                    ans[row][col] = num;
+                    num++;
+                }else dir =2;
+            }else if(dir == 2){
+                if(col-1 > -1 && ans[row][col-1] == 0){
+                    col--;
+                    ans[row][col] = num;
+                    num++;
+                }else dir =3;
+            }else if(dir == 3){
+                if(row-1 > -1 && ans[row-1][col] == 0){
+                    row--;
+                    ans[row][col] = num;
+                    num++;
+                }else dir =0;
+            }            
+        }
+        return ans;
+    }
+};
