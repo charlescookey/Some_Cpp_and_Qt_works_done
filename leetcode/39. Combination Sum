@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<vector<int>> ans{};
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        
+        std::sort(candidates.begin() , candidates.end());
+        vector<int> curr{};
+        recursivelyfind(candidates , target , curr ,0);
+        
+        return ans;
+                
+    }
+    void recursivelyfind(const vector<int>& candidates, int target , vector<int> curr , int start){
+        
+        for(int i =start; i < candidates.size() ; i++){
+            if(candidates[i] > target)return;
+            
+            if(target - candidates[i] == 0){
+                curr.push_back(candidates[i]);
+                ans.push_back(curr);
+                return;
+                
+            }else{
+                curr.push_back(candidates[i]);
+                recursivelyfind(candidates, target -candidates[i],curr ,i);
+            }
+            curr.pop_back();
+        }
+    }
+};
