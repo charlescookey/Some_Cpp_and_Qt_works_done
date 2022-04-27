@@ -1,0 +1,34 @@
+class Solution {
+public:
+    set<vector<int>> ans{};
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        std::sort(candidates.begin() , candidates.end());
+        vector<int> curr{};
+        recursivelyfind(candidates , target , curr ,0);
+
+        
+        return vector<vector<int>>(ans.begin() , ans.end());
+                
+    }
+    void recursivelyfind(const vector<int>& candidates, int target , vector<int> curr , int start){
+        int prev = -1;
+        for(int i =start; i < candidates.size() ; i++){
+            if(prev == candidates[i])continue;
+            if(candidates[i] > target)return;
+            
+            
+            if(target - candidates[i] == 0){
+                curr.push_back(candidates[i]);
+                ans.insert(curr);
+                return;
+                
+            }else{
+                curr.push_back(candidates[i]);
+                recursivelyfind(candidates, target -candidates[i],curr ,i+1);
+            }
+            curr.pop_back();
+            prev = candidates[i];
+            
+        }
+    }
+};
