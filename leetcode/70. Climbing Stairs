@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int climbStairs(int n) {
+        
+        std::map<int , int> hashmap{};
+        return climbStairs(n ,hashmap); 
+    }
+    
+    int climbStairs(int n , std::map<int , int> &hashmap) {  
+        if(hashmap.count(n) >0)return hashmap[n];
+        
+        if(n == 0)return 1;
+        if(n < 0)return 0;
+        
+        hashmap[n] = climbStairs(n-1 , hashmap) + climbStairs(n-2 , hashmap);
+         
+        return hashmap[n]; 
+    }
+    
+    
+};
