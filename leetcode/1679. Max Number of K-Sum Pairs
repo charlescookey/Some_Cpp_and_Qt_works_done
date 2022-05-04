@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int maxOperations(vector<int>& nums, int k) {
+        int l =0 ;  
+        int r = nums.size()-1;
+        int  ans =0; 
+        std::sort(nums.begin() ,nums.end());
+        while(l < r){            
+            if(nums[l] + nums[r] == k){
+                ans++;
+                l++;
+                r--;
+            }else if(nums[l] + nums[r] < k){
+                l++;
+            }else {
+                r--;
+            }
+            
+        }
+        return ans;
+        
+    }
+};
+
+Here's a wayyyyyyyyy more elegant solution, it innvolves using a map, to through and see if (ans - curr) already exists, that way we knoow its then wen can decrease
+the count to know it's been used
+
+class Solution {
+public: // Time/Space: O(n); O(n)
+    int maxOperations(vector<int>& nums, int k) {
+        unordered_map<int, int> freq;
+        int ans = 0;
+        for(auto cur: nums){
+            int complement = k - cur;
+            if(freq[complement] > 0){ans++; freq[complement]--;}
+            else freq[cur]++;
+        }
+        return ans;
+    }
+};
