@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string sortSentence(string s) {
+        
+        vector<string> store(10 , "");
+        std::stringstream a(s);
+        string temp{};
+        string ans{};
+        while(std::getline(a , temp , ' ')){
+            int pos = temp.back() - '0';
+            store[pos] = temp.substr(0 , temp.size() -1);
+        }
+        
+        for(int i =1 ; i < store.size(); i++) {
+            if(store[i] == "")break;
+            ans += store[i];
+            ans += " ";
+        }
+        ans.pop_back();
+        return ans;
+    }
+};
