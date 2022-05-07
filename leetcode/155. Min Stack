@@ -1,0 +1,53 @@
+My idea was to use a stack and a multiset.
+
+class MinStack {
+    stack<int> s{};
+    multiset<int> s2{};
+public:
+    MinStack() {
+        
+    }
+    
+    void push(int val) {
+        s.push(val);
+        s2.insert(val);
+    }
+    
+    void pop() {
+        int temp = s.top();
+        s.pop();
+        s2.erase(s2.find(temp));
+    }
+    
+    int top() {
+        return s.top();
+    }
+    
+    int getMin() {
+        return *s2.begin();
+    }
+};
+
+
+I saw a better idea where someone use a stack and a pair,the second holds the minimum, so we'd still walways know the minimum,  
+if the minimum is removed, the last pushed element has it's minimum at as when it was pushed
+
+class MinStack {
+private:
+    vector<pair<int, int>> minStack;
+public:
+    MinStack() {}
+    void push(int x) {
+        if(minStack.empty()) minStack.emplace_back(x,x);
+        else minStack.emplace_back(x, min(minStack.back().second, x));
+    }
+    void pop() {
+        minStack.pop_back();
+    }
+    int top() {
+        return minStack.back().first;
+    }
+    int getMin() {
+        return minStack.back().second;
+    }
+};
