@@ -1,0 +1,70 @@
+class NestedIterator {
+    vector<int> flat{};
+    int curr =0;
+public:
+    NestedIterator(vector<NestedInteger> &nestedList) {
+        flatten(nestedList);
+    }
+    
+    void flatten(vector<NestedInteger> &nestedList){
+        
+        for(NestedInteger a: nestedList){
+            if(a.isInteger()){
+                flat.push_back(a.getInteger());
+            }else{
+                flatten(a.getList());
+            }
+        }
+    }
+    
+    int next() {
+        return flat[curr++];
+    }
+    
+    
+    bool hasNext() {
+        return curr < flat.size();        
+    }
+};
+
+My solution was to flatten, at initalization. Another good option is what this guy did, 
+He pushed into the stack backward,at the call to hasNext, if its a list he'd push that  list elements into the stack  allso backwad
+Really Cool.
+
+
+class NestedIterator {
+private:
+    stack<NestedInteger> nodes;
+    
+public:
+    NestedIterator(vector<NestedInteger> &nestedList) {
+        int size = nestedList.size();
+        for(int i = size - 1; i >= 0; --i) {
+            nodes.push(nestedList[i]);
+        }
+    }
+
+int next() {
+    int result = nodes.top().getInteger();
+    nodes.pop();
+    return result;
+}
+
+bool hasNext() {
+    while(!nodes.empty()) {
+        NestedInteger curr = nodes.top();
+        if(curr.isInteger()) {
+            return true;
+        }
+        
+        nodes.pop();
+        vector<NestedInteger>& adjs = curr.getList();
+        int size = adjs.size();
+        for(int i = size - 1; i >= 0; --i) {
+            nodes.push(adjs[i]);
+        }
+    }
+    
+    return false;
+    }
+};
