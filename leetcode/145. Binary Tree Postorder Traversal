@@ -1,0 +1,15 @@
+class Solution {
+public:
+    vector<int> ans{};
+    vector<int> postorderTraversal(TreeNode* root) {
+        recurse(root);
+        return ans;        
+    }
+    void recurse(TreeNode* root){
+        if(!root)return;
+        recurse(root->left);
+        recurse(root->right);
+        
+        ans.push_back(root->val);
+    }
+};
