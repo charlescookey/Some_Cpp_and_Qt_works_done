@@ -1,0 +1,27 @@
+class Solution {
+    vector<vector<int>> ans;
+public:
+    vector<vector<int>> combinationSum3(int k, int n) {
+        recurse({} , 0 , n , k , 0);
+        return ans;
+    }
+    
+    void recurse(vector<int> curr , int currsum , int n ,int numbersleft , int next){
+        if(currsum + next > n ){
+            return;
+        }else if(currsum + next == n){
+            if(numbersleft == 0){
+                curr.push_back(next);
+                ans.push_back(curr);
+            }
+            return;
+        }else{
+            for(int i = next + 1 ; i < 10 ;i++){
+                if(currsum + i > n)break;
+                if(next != 0)curr.push_back(next);
+                recurse(curr , currsum+next , n , numbersleft-1 , i);
+                if(next != 0)curr.pop_back();
+            }
+        }                
+    }
+};
