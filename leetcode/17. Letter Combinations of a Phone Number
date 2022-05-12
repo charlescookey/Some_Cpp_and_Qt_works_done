@@ -1,0 +1,25 @@
+class Solution {
+public:
+    const vector<string> phone{"", "", "abc" , "def" , "ghi" , "jkl" , "mno" ,"pqrs" ,"tuv" ,"wxyz"};
+    vector<string> letterCombinations(string digits) {
+        if(digits.empty())return {};
+        vector<string> ans{""};
+        
+        for(char a:digits){
+            int digit = a - '0';
+            vector<string> placeholder{};
+            
+            for(string curr: ans){
+                for(char letter:phone[digit]){
+                    // string temp = curr;
+                    // temp+= letter;
+                    // placeholder.push_back(temp);
+                    placeholder.push_back(curr + letter);
+                }
+                
+            }
+            ans = placeholder;
+        }
+        return ans;       
+    }
+};
