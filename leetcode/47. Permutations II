@@ -1,0 +1,19 @@
+class Solution {
+public:
+    set<vector<int>> ans{};
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        recurse(nums); 
+        return vector<vector<int>>(ans.begin() , ans.end());    
+    }
+    
+    void recurse(vector<int>curr){
+        if(ans.count(curr)>0)return;
+        ans.insert(curr);
+        
+        for(int i = 1  ;  i < curr.size() ; i++){
+            vector<int> temp = curr;
+            if(i != 0)std::swap(temp[0] , temp[i]);
+            recurse(temp);            
+        }
+    }
+};
