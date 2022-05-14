@@ -1,0 +1,22 @@
+//not O(1) space though
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        std::map<ListNode* , int> hashmap{};
+        
+        
+        while(headB){
+            hashmap[headB]++;
+            headB = headB->next;
+        }
+        
+        while(headA){
+            if(hashmap.count(headA)>0){
+                return headA;
+            }
+            headA = headA->next;
+        }
+        return nullptr;
+        
+    }
+};
