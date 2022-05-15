@@ -1,0 +1,41 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int finallevel;
+    int deepestLeavesSum(TreeNode* root) {
+        finallevel =0;
+        
+        BFS(root);
+        return finallevel;
+        
+    }
+    
+    void BFS(TreeNode* root){
+        if(!root)return;
+        
+        vector<TreeNode*>  frontier{};
+        frontier.push_back(root);
+        
+        while(!frontier.empty()){
+            vector<TreeNode*> next{};
+            int levelsum = 0;
+            for(TreeNode* a: frontier){
+                levelsum += a->val;
+                if(a->left)next.push_back(a->left);
+                if(a->right)next.push_back(a->right);
+            }
+            frontier = next;
+            finallevel = levelsum;
+        }
+    }
+};
