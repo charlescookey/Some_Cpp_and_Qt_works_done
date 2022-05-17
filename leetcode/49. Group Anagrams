@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        map<string , int> hashmap{};
+        vector<vector<string>> ans{};
+        int last_int = -1;
+        for(string a : strs){
+            string key = a;
+            std::sort(key.begin() , key.end());
+            if(hashmap.count(key)>0){
+                ans[hashmap[key]].push_back(a);
+            }else{
+                ans.push_back({});
+                hashmap[key] = ++last_int;
+                ans[last_int].push_back(a);   
+            }
+        }
+        return ans;        
+    }
+};
