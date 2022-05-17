@@ -1,0 +1,52 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+
+//commented is the dfs approach
+
+class Solution {
+public:
+    TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
+        vector<TreeNode*> frontier_o{};
+        vector<TreeNode*> frontier_c{};
+        
+        frontier_o.push_back(original);
+        frontier_c.push_back(cloned);
+        
+        while(!frontier_o.empty()){
+            vector<TreeNode*> next_o{};
+            vector<TreeNode*> next_c{};
+            for(int i =0 ; i < frontier_o.size() ; i++){
+                if(frontier_o[i] == target){
+                    return frontier_c[i];
+                }
+                if(frontier_o[i]->left)next_o.push_back(frontier_o[i]->left);
+                if(frontier_o[i]->right)next_o.push_back(frontier_o[i]->right);
+                if(frontier_c[i]->left)next_c.push_back(frontier_c[i]->left);
+                if(frontier_c[i]->right)next_c.push_back(frontier_c[i]->right);
+            }
+            frontier_o = next_o;
+            frontier_c = next_c;
+        }
+        return nullptr;
+    }
+    
+//     TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
+//         return DFS(original , cloned , target);
+//     }
+    
+//     TreeNode* DFS(TreeNode* original, TreeNode* cloned, TreeNode* target){
+//         if(!original)return nullptr;
+//         if(original == target)return cloned;
+//         TreeNode* a = nullptr;
+//         if((a = DFS(original->left , cloned->left , target)))return a;
+//         if((a = DFS(original->right , cloned->right , target)))return a;
+//         return nullptr;
+//     }
+};
