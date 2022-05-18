@@ -1,0 +1,23 @@
+used a hasmap and a sorting, buth don't meet the brief though
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        std::sort(nums.begin() , nums.end());
+        
+        for(int i = 1 ; i < nums.size() ; i++){
+            if(nums[i] == nums[i-1])return nums[i];
+        }
+        
+        return nums.back();
+    }
+    int findDuplicate(vector<int>& nums) {
+        map<int , int>hashmap{};
+        
+        for(int i: nums){
+            if(hashmap.count(i) > 0){
+                return i;
+            }else hashmap[i]++;
+        }
+        return nums.back();
+    }
+};
