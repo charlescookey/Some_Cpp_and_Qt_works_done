@@ -1,0 +1,39 @@
+class Solution {
+public:
+
+
+    vector<vector<pair<int , int>>> adj{};
+    vector<int> ans{};
+    
+    int networkDelayTime(vector<vector<int>>& times, int n, int k) {
+        adj = vector<vector<pair<int , int>>>(n+1 , vector<pair<int, int>>(0));
+        ans = vector<int>(n+1 , INT_MAX);
+        
+        for(vector<int> a: times){
+            adj[a[0]].push_back({a[1] , a[2]});
+        }
+        
+        DFS(k , 0);
+        
+        int answer = INT_MIN;
+        
+        for(int i =1 ; i < ans.size() ; i++){
+            answer = max(ans[i] , answer);
+        }
+        
+        return answer == INT_MAX ? -1 : answer; 
+        
+    }
+    
+    void DFS(int curr , int time){
+        
+        if(time >= ans[curr])return;
+        
+        ans[curr] = time;
+        
+        for(pair<int, int> a : adj[curr]){
+            DFS(a.first , time+a.second);            
+        }
+    }
+    
+};
