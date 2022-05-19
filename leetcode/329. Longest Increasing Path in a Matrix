@@ -1,0 +1,48 @@
+class Solution {
+public:
+       
+    std::map<pair<int, int>, int> hashmap{};
+    int m =0;//row size
+    int n =0; //col size
+    int longestIncreasingPath(vector<vector<int>>& matrix) {
+
+        int ans =0;
+        m = matrix.size();
+        n = matrix[0].size();
+        
+        for (int i = 0; i < matrix.size(); i++) {
+            for (int j = 0; j < matrix[0].size(); j++) {
+                ans = max(ans , dfs(matrix, i, j));
+            }
+        }     
+        return ans;
+    }
+
+    int dfs(vector<vector<int>>& matrix, int row, int col) {
+        if (hashmap.count({ row , col }) > 0) {
+            return hashmap[{row, col}];
+        }
+        int ans =1;
+        if (row > 0 && matrix[row - 1][col] > matrix[row][col]) {//up
+            ans = max(ans , dfs(matrix, row - 1, col) + 1);
+        }
+
+        int right = 0;
+        if (col > 0 && matrix[row][col - 1] > matrix[row][col]) {//left
+            ans = max(ans , dfs(matrix, row, col - 1) + 1);
+        }
+
+        int left = 0;
+        if (col + 1 < n && matrix[row][col + 1] > matrix[row][col]) {//right
+            ans = max(ans , dfs(matrix, row, col + 1) + 1);
+        }
+
+        int down = 0;
+        if (row + 1 < m && matrix[row + 1][col] > matrix[row][col]) {//down
+            ans = max(ans , dfs(matrix, row + 1, col) + 1);
+        }
+
+        hashmap[{row, col}] = ans;
+        return ans;
+    }
+};
