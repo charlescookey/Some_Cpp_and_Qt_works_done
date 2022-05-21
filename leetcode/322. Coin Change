@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        map<int, pair<int ,int>> hashmap{};
+        return DFS(coins , amount , hashmap ,0);
+    }
+    
+    int DFS(vector<int>& coins , int amount , map<int, pair<int ,int>>& hashmap , int steps){
+        if(amount == 0){
+            return 0;
+        }else if(amount < 0){
+            return -1;
+        }
+        
+        if(hashmap.count(amount)>0){
+            return hashmap[amount].second;
+        }
+        
+        
+        
+        int ans =INT_MAX;
+        for(int i: coins){
+            
+            int temp = DFS(coins , amount -i , hashmap, steps+1);
+            
+            if(temp == -1)continue;
+            
+            ans = min(ans , temp+1);
+        }
+        if(ans == INT_MAX)ans =-1;
+        
+        hashmap[amount] = {steps , ans};
+        return ans;             
+    }
+};
