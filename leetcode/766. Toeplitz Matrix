@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isToeplitzMatrix(vector<vector<int>>& matrix) {
+        for(int k =0 ; k < matrix[0].size() ; k++){//top row diagonal down
+            int i =k;
+            int j =0; int ref = matrix[0][i];
+            while(i < matrix[0].size() && j < matrix.size()){
+                if(matrix[j][i] != ref)return false;
+                i++;j++;
+            }
+        } 
+        
+        for(int k =1 ; k < matrix.size() ; k++){//first col diagonal
+            int i =k;
+            int j =0; int ref = matrix[i][0];
+            while(i < matrix.size() && j < matrix[0].size()){
+                if(matrix[i][j] != ref)return false;
+                i++;j++;
+            }
+        } 
+        return true;
+    }
+};
