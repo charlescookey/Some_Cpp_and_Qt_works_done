@@ -1,0 +1,33 @@
+class Solution {
+public:
+
+//regular binary method, divide by 2; if remainder is 1, count it; ideally this is how we convert to binary
+    int hammingWeight(uint32_t n) {
+        int count =0;
+        while(n > 0){
+            count += n%2;
+            n/=2;
+        }
+        return count;
+        
+    }
+    
+//bit manipulation soolution, n & n-1 ; theres only one bit difference , so we'd count ; ps n & n-1, would give us the same for all 1's before the last one
+//so this solution would only run for hown many  1's there are. the operation dropes the lowest set bit.
+
+//Let's use n = 00101100 as an example. This binary representation has three 1s.
+//If n = 00101100, then n - 1 = 00101011, so n & (n - 1) = 00101100 & 00101011 = 00101000. Count = 1.
+//If n = 00101000, then n - 1 = 00100111, so n & (n - 1) = 00101000 & 00100111 = 00100000. Count = 2.
+//If n = 00100000, then n - 1 = 00011111, so n & (n - 1) = 00100000 & 00011111 = 00000000. Count = 3.
+//n is now zero, so the while loop ends, and the final count (the numbers of set bits) is returned.
+    
+    int hammingWeight(uint32_t n) {
+        int count =0;
+        while(n){
+             n &= n-1;
+            count++;
+        }
+        return count;
+        
+    }
+};
