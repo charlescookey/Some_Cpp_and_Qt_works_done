@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int maxProduct(vector<string>& words){
+        int ans =0;
+        int size = words.size();
+        
+        vector<int> bitmask(size);
+        
+        for(int i =0 ; i  < words.size() ; i++){
+            for(char a: words[i]){
+                bitmask[i] |= 1 << (a - 'a');
+            }
+            
+            for(int j = 0 ; j < i ; j++){
+                if(!(bitmask[i] & bitmask[j])){
+                    ans = max(ans , int( words[i].size() * words[j].size()) );
+                }
+            }
+        }
+       return ans; 
+    }
+};
+
+explanation, we're shifing a 1 to the position of the letter, so it's easier to check for commonality
+
+For eg. 
+Consider word1 = "abex", word2 = "acdx"
+hash1 = (11001000000000000000000100) in binary
+hash2 = (10110000000000000000000100) in binary
+       ------------------------------------
+	   & 10000000000000000000000100    ==>   common letters are present
+	   
+Consider word1 = "abex", word2 = "dfgmn"
+hash1 = (11001000000000000000000100) in binary
+hash2 = (00010110000011000000000000) in binary
+       ------------------------------------
+	   & 00000000000000000000000000   ==>    no common letter present
+	   
+So, we can just do (hash1 & hash2) and if its 0, that denotes that hash1 and hash2 didn't have any common set bit
