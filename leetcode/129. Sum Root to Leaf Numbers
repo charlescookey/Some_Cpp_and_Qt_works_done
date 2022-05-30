@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int ans =0;
+    int sumNumbers(TreeNode* root) {
+        DFS(root ,"");
+        return ans;
+    }
+    
+    void DFS(TreeNode* curr , string cumm){
+        if(!curr)return;
+        
+        string temp = cumm + to_string(curr->val);
+        
+        DFS(curr->left , temp);
+        DFS(curr->right , temp);
+        
+        if(!curr->left && !curr->right){
+            ans += std::stoi(temp);
+        }
+    }
+};
