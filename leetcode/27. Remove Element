@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {       
+        int l =0; 
+        
+        for(int i =0 ; i < nums.size() ; i++){
+            if(nums[i] != val){
+                nums[l++] = nums[i];
+            }
+        }
+        
+        return l;
+    }
+};
+
+//the above one we just replace the front elements with the non vlaue element
+//old solution, we were swapping to prevent loss
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {       
+        int end = nums.size()-1;
+        int occur =0;
+        
+        for(int a:nums){
+            if(a == val)occur++;
+        }
+        
+        for(int i =0; i < nums.size() -occur ; i++){
+            while(nums[end] == val)end--;
+            if(nums[i] == val)swap(nums[i] , nums[end--]);
+        }
+        
+        cout<<occur<<"\n";
+        
+        return nums.size() -occur;
+    }
+};
