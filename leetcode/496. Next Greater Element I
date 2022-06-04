@@ -10,9 +10,14 @@ public:
         vector<int> ans{};
         for(int i =0 ; i < nums1.size() ; i++){
             if(hashmap[nums1[i]] < nums2.size() -1){
-                int index = hashmap[nums1[i]];
-                if(nums2[index + 1] > nums1[i]){
-                    ans.push_back(nums2[index+1]);
+                int index = hashmap[nums1[i]] +1;
+                
+                while(index < nums2.size()  && nums2[index] < nums1[i]){
+                    index++;
+                }
+                
+                if(index < nums2.size() && nums2[index] > nums1[i]){
+                    ans.push_back(nums2[index]);
                     continue;
                 }
             }
