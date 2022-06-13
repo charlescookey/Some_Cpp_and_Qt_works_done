@@ -1,0 +1,29 @@
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        int as =0;
+        int bs =0;
+        std::map<char , int> hashmap{};
+        for(char a: secret){
+            hashmap[a]++;
+        }
+        
+        for(int i=0; i < guess.size() ; i++){
+            if(guess[i] == secret[i]){
+                if(hashmap[guess[i]] > 0){
+                    as++;
+                    hashmap[guess[i]]--;
+                }else{
+                    bs--;
+                    as++;
+                }
+            }else if(hashmap.count(guess[i]) > 0 && hashmap[guess[i]] > 0){
+                bs++;
+                hashmap[guess[i]]--;
+            }
+        }
+        string ans = to_string(as) + 'A' + to_string(bs) + 'B';
+        return ans;
+        
+    }
+};
