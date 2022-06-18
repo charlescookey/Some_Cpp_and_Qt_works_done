@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int timeRequiredToBuy(vector<int>& tickets, int k) {
+        int sum =0;
+        
+        for(int i =0; i < tickets.size() ; i++){
+            if(i <= k){
+                sum += min(tickets[k] , tickets[i]);
+            }else{
+                sum += min(tickets[k]-1 , tickets[i]);
+            }
+        }
+        
+        return sum;
+    }
+};
+
+this solution was ideal,  but then i saw an optimization that blew my mind
+
+class Solution {
+public:
+    int timeRequiredToBuy(vector<int>& A, int k) {
+        int ans = 0;
+        for (int i = 0; i < A.size(); ++i) {
+            ans += min(A[k] - (i > k), A[i]);
+        }
+        return ans;
+    }
+};
+
+so if(i < k)is true it will be 1 and false will be 0. thats acc crazy mehnnnn!
