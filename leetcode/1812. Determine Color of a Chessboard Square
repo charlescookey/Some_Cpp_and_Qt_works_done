@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool squareIsWhite(string coordinates) {
+        
+        int l = coordinates[0]-'`';
+        int n = coordinates[1]-'0';
+        
+        return l%2 != n%2;
+        
+    }
+};
+
+A cool one liner using the same idea
+bool squareIsWhite(string coordinates) {
+    return ((coordinates[0] - 'a') + (coordinates[1] - '0')) % 2 == 0 ? true : false;
+}
