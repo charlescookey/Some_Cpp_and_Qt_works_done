@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int minPartitions(string n) {
+        int ans = -1;
+        for(int i = 0 ; i < n.size() ; i++){
+            ans = max(ans , n[i]-'0');
+        }
+        return ans;
+    }
+};
+
+
+Here's a onle liner
+
+int minPartitions(string n) {
+        return *max_element(begin(n), end(n)) - '0';
+    }
