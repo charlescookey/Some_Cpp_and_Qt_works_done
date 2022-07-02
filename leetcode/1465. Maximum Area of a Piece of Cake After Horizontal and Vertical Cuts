@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int maxArea(int h, int w, vector<int>& horizontalCuts, vector<int>& verticalCuts) {
+        std::sort(horizontalCuts.begin() , horizontalCuts.end());
+        int maxrow = max (horizontalCuts[0] , h - horizontalCuts.back());
+        
+        for(int i=1 ;  i < horizontalCuts.size() ; i++){
+            maxrow = max(maxrow , horizontalCuts[i] - horizontalCuts[i-1]);
+        }
+
+        std::sort(verticalCuts.begin() , verticalCuts.end());
+        int maxcol = max(verticalCuts[0] , w - verticalCuts.back());
+
+        
+        for(int i=1 ;  i < verticalCuts.size() ; i++){
+            maxcol = max(maxcol , verticalCuts[i] - verticalCuts[i-1]);
+        }
+        
+        
+        
+        return (1LL* maxrow * maxcol)%(1000000007);
+        
+        
+    }
+};
