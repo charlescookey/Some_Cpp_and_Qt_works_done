@@ -1,0 +1,47 @@
+The first is O(n) time and  O(n) space
+The second was an optimization O(n) time and O(1) space
+
+class Solution {
+public:
+    int wiggleMaxLength(vector<int>& nums) {
+        if(nums.size()==1 )return 1;
+        std::stack<bool> stackk{};
+        
+        for(int i =1 ; i < nums.size() ; i++){
+            bool temp;
+            if(nums[i] - nums[i-1] > 0){
+                temp =  true;
+            }else if(nums[i] - nums[i-1] < 0){
+                temp =false;
+            }else continue;
+            if(!stackk.empty() && stackk.top() == temp)continue;
+            stackk.push(temp);
+        }
+        return stackk.size()+1;
+    }
+};
+
+
+class Solution {
+public:
+    int wiggleMaxLength(vector<int>& nums) {
+        if(nums.size()==1 )return 1;
+        int count = 0;
+        bool lastbool = false;
+        
+        for(int i =1 ; i < nums.size() ; i++){
+            bool temp;
+            if(nums[i] - nums[i-1] > 0){
+                temp =  true;
+            }else if(nums[i] - nums[i-1] < 0){
+                temp =false;
+            }else continue;
+            
+            if(count!=0 && lastbool == temp)continue;
+            
+            lastbool = temp;
+            count++;
+        }
+        return count+1;
+    }
+};
