@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        std::map<int, int> hashmap{};
+        for(int a : nums){
+            hashmap[a] =1;
+        }
+        
+        int lastelement = -1000000001 ;
+        int lastanswer =0;
+        int maxAnswer =0;
+        
+        for(std::pair<int,int> a : hashmap){
+            
+            if(a.first - lastelement == 1){
+                lastanswer++;
+            }else{
+                lastanswer = 1;
+            }            
+      
+            lastelement = a.first;
+            maxAnswer = max(maxAnswer , lastanswer);
+        }
+        
+        
+        return maxAnswer;        
+    }
+};
