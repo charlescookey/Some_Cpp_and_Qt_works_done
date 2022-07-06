@@ -1,0 +1,18 @@
+class Solution {
+public:
+    std::map<int, int> hashmap{};
+    int fib(int n) {
+        hashmap[0] = 0;
+        hashmap[1] = 1;
+        
+        return recurse(n);
+    }
+    
+    int recurse(int n){
+        if(n<0)return 0;
+        if(hashmap.count(n) > 0)return hashmap[n];
+        
+        hashmap[n] = recurse(n-1) + recurse(n-2);
+        return hashmap[n];
+    }
+};
