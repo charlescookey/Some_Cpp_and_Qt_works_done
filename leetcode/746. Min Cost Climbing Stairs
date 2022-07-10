@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int minCostClimbingStairs(vector<int>& cost) {
+        
+        vector<int> hashmap(cost.size()+2 , 0);
+        
+        for(int i =cost.size()-1 ; i >= 0; i--){          
+            hashmap[i] = cost[i] + min(hashmap[i+1] , hashmap[i+2]);
+        }
+        
+        return min(hashmap[0] , hashmap[1]);
+    }
+};
