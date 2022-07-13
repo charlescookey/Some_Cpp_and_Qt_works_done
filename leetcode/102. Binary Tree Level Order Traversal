@@ -12,9 +12,9 @@
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
+        if(!root)return {};
         vector<TreeNode*> frontier{};
         vector<vector<int>> ans{};
-        if(!root)return {};
         frontier.push_back(root);
         
         while(!frontier.empty()){
