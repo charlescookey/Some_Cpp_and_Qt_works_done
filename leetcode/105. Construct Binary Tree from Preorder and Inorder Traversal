@@ -1,0 +1,26 @@
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {        
+        return construct(preorder , inorder);
+    }
+    
+    TreeNode* construct(vector<int> preorder, vector<int> inorder ){
+        //if(preorder.empty())return nullptr;
+        //if(preorder.size() == 1)return new TreeNode(preorder[0]);
+        int breakpoint = INT_MAX;
+        
+        for(int i =0 ; i < inorder.size() ; i++){
+            if(inorder[i] == preorder[0]){
+                breakpoint = i;
+            }
+        }
+        
+        if(breakpoint == INT_MAX)return nullptr;
+        
+        TreeNode* node  = new TreeNode(preorder[0]);        
+        node->left = construct(vector<int>(preorder.begin()+1 , preorder.begin()+breakpoint+1) , vector<int>(inorder.begin() , inorder.begin() + breakpoint) );
+        node->right = construct(vector<int>(preorder.begin()+breakpoint+1 , preorder.end()), vector<int>(inorder.begin()+breakpoint+1 , inorder.end()) ); 
+        
+        return node;
+    }
+};
