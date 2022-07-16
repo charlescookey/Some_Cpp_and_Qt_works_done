@@ -1,0 +1,29 @@
+class Solution {
+public:
+
+    int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
+        std::map<std::tuple<int,int, int> , int> hashmap{};
+        return dfs(m ,n ,maxMove , startRow , startColumn , hashmap);
+    }
+    //1000000007
+    int dfs(int m , int n , int maxmove , int currRow , int currCol , std::map<std::tuple<int,int, int> , int>& hashmap){
+        if(currRow< 0 || currRow >= m || currCol <0 || currCol >= n)return 1;
+        
+        if(maxmove <= 0)return 0;
+        
+        if(hashmap.count({currRow , currCol , maxmove}) > 0){
+            return hashmap[{currRow , currCol, maxmove}];
+        }
+        
+        int currans = 0;    
+           
+        currans = (currans + dfs(m ,n ,maxmove-1 , currRow+1 , currCol , hashmap)) % 1000000007;
+        currans = (currans + dfs(m ,n ,maxmove-1 , currRow-1 , currCol , hashmap)) % 1000000007;
+        currans = (currans + dfs(m ,n ,maxmove-1 , currRow , currCol+1 , hashmap)) % 1000000007;
+        currans = (currans + dfs(m ,n ,maxmove-1 , currRow , currCol-1 , hashmap)) % 1000000007;
+                
+        hashmap[{currRow , currCol , maxmove}] = currans;
+        
+        return hashmap[{currRow , currCol , maxmove}];
+    }
+};
