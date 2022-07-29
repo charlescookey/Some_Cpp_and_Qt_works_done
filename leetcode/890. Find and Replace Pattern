@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+        vector<string> ans{};
+        for(string a: words){
+            if(checker(pattern , a))ans.push_back(a);
+        }
+        return ans;
+    }
+    
+    
+    bool checker(string word , string pattern){
+        std::map<char , char> hashmapa{};
+        std::map<char , char> hashmapb{};
+        
+        
+        for(int i =0; i < pattern.size() ; i++){
+            if(hashmapa.count(pattern[i]) > 0 ){
+                if(hashmapa[pattern[i]] != word[i])return false;
+            }else{
+                hashmapa[pattern[i]] = word[i];
+            }
+            
+            if(hashmapb.count(word[i]) > 0){
+                if(hashmapb[word[i]] != pattern[i])return false;
+            }else{
+                hashmapb[word[i]] = pattern[i];
+            }
+        }
+        return true;
+    }
+};
