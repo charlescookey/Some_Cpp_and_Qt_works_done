@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int minimumRounds(vector<int>& tasks) {
+        std::map<int, int> hashmap{};
+
+        for(int i: tasks){
+            hashmap[i]++;
+        }
+
+        int ans =0;
+
+        for(pair<int, int> element : hashmap){
+            if(element.second == 1)
+                return -1;
+
+            ans += element.second / 3;
+
+            if(element.second % 3 == 0) continue;
+            ans++;
+        }
+
+        return ans;
+        
+    }
+};
