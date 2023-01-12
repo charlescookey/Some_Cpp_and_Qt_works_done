@@ -1,0 +1,48 @@
+class Solution {
+public:
+
+    string _labels{};
+    vector<int> ans{};
+    vector<bool> visited{};
+    std::map<int, vector<int>>graph;
+
+    vector<int> countSubTrees(int n, vector<vector<int>>& edges, string labels) {
+
+        for(vector<int> i : edges){
+            graph[i[0]].push_back(i[1]);
+            graph[i[1]].push_back(i[0]);
+        }
+        _labels = labels;
+        ans = vector<int>(n , 1);
+        visited = vector<bool>(n, false);
+        
+        dfs(0 );
+
+        return ans;
+    }
+
+    void join(map<char , int> &a, map<char , int> b){
+        for(std::pair<char , int> c : b){
+            a[c.first] += c.second;
+        }
+    }
+
+
+    map<char , int> dfs(int curr)
+    {
+        map<char , int> children;
+        visited[curr] = true;
+        
+        for(int i : graph[curr]){
+            if(visited[i])continue; 
+            join(children ,dfs(i ));
+
+        }
+        
+        ans[ curr ] = 1 + children[ _labels[curr]];
+        children[ _labels[curr]]++;
+        visited[curr] = false;
+
+        return children;        
+    }
+};
