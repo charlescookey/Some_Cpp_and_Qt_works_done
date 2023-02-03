@@ -1,0 +1,55 @@
+class Solution {
+public:
+    int search(vector<int>& nums, int target) 
+    {
+        int min = findmin(nums);
+        cout<<min<<"\n";
+        
+        int begin = 0;
+        int end = nums.size()-1;
+        if(target > nums.back()){
+            end =min-1;
+        }else if(target <= nums.back()){
+            begin = min;
+        }
+        cout<<begin<<" "<<end<<"\n ";
+        return regularBinarySearch(nums , target , begin , end);
+
+        
+    }
+    int findmin(vector<int>& nums)
+    {
+        int begin = 0;
+        int end = nums.size()-1;
+        int current =0;
+        while(begin <= end){
+            
+            current = (begin + end)/2;
+            if(nums[begin] == nums[end]){
+                break;
+            }else if(nums[current] > nums[end]){
+                begin = current +1;
+            }else{
+                end = current;
+            }
+        }
+        return begin;
+    };
+
+    int regularBinarySearch(vector<int>& nums, int target , int begin, int end)
+    {
+        while(begin <= end){
+            int curr =  (begin + end)/2;
+            cout<<begin<<" "<<end<<" "<<curr<<"\n ";
+
+            if(nums[curr] == target)return curr;
+            else if(nums[curr] < target){
+                begin = curr+1;
+            }else if(nums[curr] > target){
+                end = curr -1;
+            }
+        }
+        return -1;
+
+    };
+};
