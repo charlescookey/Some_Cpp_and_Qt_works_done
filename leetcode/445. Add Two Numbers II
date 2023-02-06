@@ -1,0 +1,66 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        string a = traverse(l1);
+        long _a = stol(a);
+        string b = traverse(l2);
+        long _b = stol(b);
+        
+        return intToList(_a+_b );
+    }
+
+
+    ListNode* intToList(long a ){
+        ListNode* head = new ListNode();
+        ListNode* prev = head;
+        ListNode *next = nullptr;
+        ListNode *last = nullptr;
+        cout<<a<<"\n";
+        while(a > 0){
+            int curr = a%10;
+            a /= 10;
+
+            next = new ListNode();
+            prev->val = curr;
+            prev->next = next;
+            last = prev;
+
+            prev = next;
+        }
+        if(last)last->next = nullptr;
+        
+        prev = nullptr;
+
+        while(head != nullptr){
+            next = head->next;
+            head->next = prev;
+            prev = head;
+            head = next;            
+        }
+
+        return prev;
+
+
+
+    }
+
+    string traverse(ListNode* l1){
+        if(l1 == nullptr)return "";
+
+        string ans;
+        ans += to_string(l1->val);
+        ans += traverse(l1->next);
+
+        return ans;
+    }
+};
