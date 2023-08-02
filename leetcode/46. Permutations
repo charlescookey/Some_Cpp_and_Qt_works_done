@@ -1,22 +1,23 @@
 class Solution {
 public:
     vector<vector<int>> permute(vector<int>& nums) {
-        recurse(nums); 
-        return ans_v; 
+        vector<vector<int>> answer{};
+        std::map<vector<int> , int> hashmap{};
+
+        recursive_permute(hashmap , answer , nums);
+        return answer;
     }
-    
-    set<vector<int>> ans{};
-    vector<vector<int>> ans_v{};
-    
-    void recurse(vector<int>curr){
-        if(ans.count(curr)>0)return;
-        ans.insert(curr);
-        ans_v.push_back(curr);
-        
-        for(int i = 1  ;  i < curr.size() ; i++){
-            vector<int> temp = curr;
-            if(i != 0)std::swap(temp[0] , temp[i]);
-            recurse(temp);            
+
+    void recursive_permute(std::map<vector<int> , int> &hashmap , vector<vector<int>> &answer , vector<int>& nums){
+        if(hashmap.count(nums) > 0){
+            return;
         }
-    }
+        hashmap[nums] =  1;
+        answer.push_back(nums);
+        for(int i =1 ; i < nums.size() ; i++){
+            std::swap(nums[0] , nums[i]);
+            recursive_permute(hashmap , answer , nums);
+            std::swap(nums[0] , nums[i]);
+        }
+    };
 };
