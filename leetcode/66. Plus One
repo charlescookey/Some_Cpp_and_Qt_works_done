@@ -15,6 +15,7 @@ public:
         vector<int> ans;
         ans.push_back(carry);
         ans.insert(ans.end() , digits.begin() , digits.end());
+        ///since we're only adding on, the most we can get is 10, so we can just push back 0 and make front 1
         return ans;
     }
 };
