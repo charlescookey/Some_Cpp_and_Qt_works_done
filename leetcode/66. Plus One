@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int carry = 1;
+        int sum =0;
+        for(int i = digits.size() -1 ; i > -1 ; i--){
+            sum = digits[i] + carry;
+            digits[i] = sum %10;
+            carry = sum / 10;
+            cout<<sum<<" "<<carry<<"\n";
+        }  
+        if(carry == 0){
+            return digits;
+        }
+        vector<int> ans;
+        ans.push_back(carry);
+        ans.insert(ans.end() , digits.begin() , digits.end());
+        return ans;
+    }
+};
