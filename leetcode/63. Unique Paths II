@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        map<pair<int,int> , int> hashmap{};
+        return dfs(0,0,obstacleGrid, hashmap);
+    }
+
+    int dfs(int x, int y , vector<vector<int>>& obstacleGrid , map<pair<int,int> , int> &hashmap){
+        if(hashmap.count({y,x}) > 0){
+            return hashmap[{y,x}];
+        }
+        if(x >= obstacleGrid[0].size()){
+            return 0;
+        }
+        if(y >= obstacleGrid.size()){
+            return 0;
+        }
+        if(obstacleGrid[y][x] == 1){
+            return 0;
+        }
+
+        if(y == obstacleGrid.size() -1 && x == obstacleGrid[0].size() -1){
+            return 1;
+        }
+
+        int ans = 0;
+
+        ans += dfs(x+1 , y, obstacleGrid, hashmap);
+        ans += dfs(x , y+1, obstacleGrid, hashmap);
+
+        hashmap[{y,x}] = ans;
+
+        return ans;
+    }
+};
