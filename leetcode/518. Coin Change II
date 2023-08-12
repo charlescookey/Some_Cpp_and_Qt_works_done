@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int change(int amount, vector<int>& coins) {
+        std::map<int, int> hashmap{};
+        hashmap[0] =1;
+
+        for(int coin : coins){
+            for(int j = coin ; j <= amount ; j++){
+                hashmap[j] += hashmap[j-coin];
+            }
+        }
+        return hashmap[amount];
+    }
+
+};
