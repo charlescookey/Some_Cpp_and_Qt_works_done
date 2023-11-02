@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int countAsterisks(string s) {
+        bool count = true;
+        int ans = 0;
+
+        for(char a : s){
+            if(a =='|'){
+                count = !count;
+                continue;
+            }
+            if(count && a == '*')ans++;
+        }
+        return ans; 
+    }
+};
