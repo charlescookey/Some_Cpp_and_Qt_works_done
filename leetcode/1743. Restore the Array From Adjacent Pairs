@@ -1,0 +1,43 @@
+class Solution {
+public:
+    vector<int> restoreArray(vector<vector<int>>& adjacentPairs) {
+        vector<int> ans{};
+        unordered_map<int, vector<int> >hashmap{};
+
+    for (vector<int> a : adjacentPairs) {
+        hashmap[a[1]].push_back(a[0]);
+        hashmap[a[0]].push_back(a[1]);
+    }
+
+    int start = 0;
+
+    for (auto const& [key, val] : hashmap) {
+        if (val.size() == 1) {
+            start = key;
+            break;
+        }
+    }
+
+    int parent = start;
+    vector<int> temp{};
+    ans.push_back(start);
+
+    while (true) {
+        temp = hashmap[start];
+
+        if (start != parent && temp.size() == 1)break;
+
+        for (int a : temp) {
+            if (a != parent) {
+                ans.push_back(a);
+                parent = start;
+                start = a;
+                break;
+            }
+        }
+    }
+
+    return ans;
+        
+    }
+};
