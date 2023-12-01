@@ -43,8 +43,7 @@ public:
                 q_frontier = q_next;
                 p_frontier = p_next;
             }       
-        }
-        
+        }   
         return true;
     }
 };
