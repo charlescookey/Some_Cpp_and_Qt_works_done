@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string largestGoodInteger(string num) {
+        char most = ' ';
+        int temp =1;
+        for(int i = 1 ; i < num.size() ; i++){
+            if(num[i] ==  num[i-1]){
+                temp++;
+            }else{
+                temp=1;
+            }
+
+            if(temp == 3 && num[i] >= most){
+                most = num[i];
+            }
+        }
+
+        if(most == ' ')return "";
+
+        return string(3, most);
+    }
+};
