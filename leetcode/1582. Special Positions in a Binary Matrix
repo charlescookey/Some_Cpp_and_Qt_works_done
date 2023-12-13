@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int numSpecial(vector<vector<int>>& mat) {
+
+        int rows = mat.size();
+        int cols = mat[0].size();
+
+        vector <int> rowVec(rows , 0);
+        vector <int> colVec(cols , 0);
+
+        int ans = 0;
+
+        for(int i = 0 ; i < rows ; i++){
+            int place = -1;
+            for(int j = 0 ; j < cols ; j++){
+                if(mat[i][j] == 1){
+                    place = j;
+                    colVec[j] += mat[i][j];
+                    rowVec[i] += 1;
+
+                }
+            }
+            if(rowVec[i] == 1 )rowVec[i] = place;
+            else rowVec[i] = -1;
+        }
+
+        for(int i = 0 ; i < rows ; i++){
+
+            if(rowVec[i] != -1 && colVec[rowVec[i]] == 1)ans++;
+        }
+
+        return ans;
+        
+    }
+};
