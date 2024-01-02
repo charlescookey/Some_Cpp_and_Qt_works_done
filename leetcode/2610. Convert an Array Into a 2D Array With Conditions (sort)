@@ -1,0 +1,20 @@
+    vector<vector<int>> findMatrix(vector<int>& nums) {
+        std::sort(nums.begin(), nums.end());
+
+        vector<vector<int>> ans{{nums[0]}};
+        int currRow = 0;
+
+        for(int i = 1 ;  i < nums.size() ; i++){
+            if(nums[i] == nums[i-1])
+                currRow++;
+            else
+                currRow = 0;
+            
+            if(currRow >= ans.size())
+                ans.push_back({nums[i]});
+            else
+                ans[currRow].push_back(nums[i]);
+        }
+        return ans;
+        
+    }
