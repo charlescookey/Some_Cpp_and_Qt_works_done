@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+        int ans =0;
+        std::unordered_map<int, int> hashmap{};
+
+        for(const int &i: nums){
+            hashmap[i]++;
+        }
+
+        for(const auto& [key , value] : hashmap){
+            if(value == 1)return -1;
+
+            ans += value /3;
+            if(value %3 > 0)ans++;
+        }
+        return ans;       
+    }
+};
