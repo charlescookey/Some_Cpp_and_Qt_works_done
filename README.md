@@ -3,3 +3,5 @@ They include some of the hackerrank,leetcode questons I've solved.
 
 My leetcode profile
 https://leetcode.com/charlescookey/
+
+The leetcode folder contains my solutions
