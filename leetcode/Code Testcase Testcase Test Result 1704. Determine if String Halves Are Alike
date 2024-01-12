@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool isVowel(char input){
+        char a = std::tolower(input);
+        return a == 'a' || a == 'e' || a == 'i' || a == 'o' || a == 'u';
+    }
+    bool halvesAreAlike(string s) {
+        int count = 0;
+        int size = s.size();
+        for(int i = 0; i < size ; i++){
+            if(isVowel(s[i]) ){
+                if(i < size /2)
+                    count++;
+                else
+                    count--; 
+            }
+        }
+        return count ==0;        
+    }
+};
