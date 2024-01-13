@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int minSteps(string s, string t) {
+        //unordered_map<char , int> hashmap{};
+        std::vector<int> hashmap(26 , 0);
+
+        for(const char &a: s){
+            hashmap[a-'a']++;
+        }
+
+        int ans =0;
+        for(const char &a: t){           
+            hashmap[a-'a']--;
+            if(hashmap[a-'a']< 0)ans++;
+        }
+        return ans;
+        
+    }
+};
