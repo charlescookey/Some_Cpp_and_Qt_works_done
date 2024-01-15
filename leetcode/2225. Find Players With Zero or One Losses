@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<vector<int>> findWinners(vector<vector<int>>& matches) {
+        std::unordered_map<int, int> lossMap{};
+
+        vector<vector<int>> ans{{},{}};
+
+        for(const vector<int> &a:matches){
+            lossMap[a[1]]++;
+        }
+
+        for(const vector<int> &a:matches){
+            if(lossMap.count(a[0]) < 1){
+                ans[0].push_back(a[0]);
+                lossMap[a[0]] = 20;
+            }
+
+            if(lossMap[a[1]] == 1){
+                ans[1].push_back(a[1]);
+            }
+
+        }
+
+
+        std::sort(ans[0].begin(), ans[0].end());
+        std::sort(ans[1].begin(), ans[1].end());
+
+        return ans;        
+    }
+};
