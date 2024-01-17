@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        std::unordered_map<int,int>hashmap{};
+        std::set<int> freqSet{};
+
+        for(const int& a: arr){
+            hashmap[a]++;
+        }
+
+        for(const auto& [key, val]: hashmap){
+            if(freqSet.count(val))return false;
+            freqSet.insert(val);
+        }
+        return true;
+    }
+};
