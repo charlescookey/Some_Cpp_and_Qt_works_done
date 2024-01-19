@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int minFallingPathSum(vector<vector<int>>& matrix) {
+        int ans = INT_MAX;
+        vector<vector<int>> hashmap(matrix.size() , vector<int>(matrix[0].size() , INT_MAX));
+
+        for(int i = 0 ; i  < matrix[0].size() ; i++){
+            ans = std::min(ans,down(matrix , 0, i,hashmap));
+        }
+        return ans;        
+    }
+
+    int down(const vector<vector<int>>& matrix,const int& row,const int& col,vector<vector<int>> &hashmap){
+        if(row >= matrix.size())return INT_MAX;
+        if(col < 0 || col >= matrix[0].size())return INT_MAX;
+        if(hashmap[row][col] != INT_MAX)return hashmap[row][col];
+
+        int ans = INT_MAX;
+        for(int i = -1 ; i < 2 ; i++){
+            ans  = std::min(ans ,down(matrix , row+1 , col + i,hashmap));
+        }
+
+        if(ans == INT_MAX)ans =0;
+
+        hashmap[row][col] = matrix[row][col] + ans;
+        return hashmap[row][col];
+
+    }
+};
