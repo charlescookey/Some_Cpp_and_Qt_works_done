@@ -1,0 +1,63 @@
+class Solution {
+public:
+    int sumSubarrayMins(vector<int>& arr) {
+        std::stack<int> temp;
+        int _size = arr.size();
+
+        std::vector<int> nextSmaller(_size);
+        std::vector<int> prevSmaller(_size);
+
+        for(int i= 0 ; i < _size ; i++){
+            prevSmaller[i] = i;
+            nextSmaller[i] = _size - i -1;
+        }
+
+        //this is to find the index of the element going forward which is less than  the curr index
+        for(int i =0; i < _size ; i++){
+            while(!temp.empty() && arr[temp.top()] > arr[i]){
+                nextSmaller[temp.top()] = i - temp.top() - 1;
+                temp.pop();
+            }
+            temp.push(i);
+        }
+
+        temp = stack<int>();
+        //this is to find the index of the element going bacward which is less than  the curr index
+        for(int i =_size-1; i >= 0 ; i--){
+            while(!temp.empty() && arr[temp.top()] >= arr[i]){
+                prevSmaller[temp.top()] = temp.top() - i -1;
+                temp.pop();
+            }
+            temp.push(i);
+        }
+
+        long mod = 1e9+7;
+        long ans = 0;
+        long sum = 0;
+
+        for(int i = 0 ; i < _size ; i++){
+            sum = (long long)(arr[i] * (prevSmaller[i]+1)%mod * (nextSmaller[i] +1)%mod)%mod;
+            sum%= mod;
+            ans += sum;
+            ans%=mod;
+        }
+        return ans;
+    }
+
+    //O(N)^2 too slow
+
+    // int sumSubarrayMins(vector<int>& arr) {
+    //     int sum = 0;
+    //     int currMin = 0;
+    //     for(int i=0; i < arr.size() ; i++){
+    //         currMin = arr[i];
+    //         sum += currMin;
+    //         for(int j = i+1;  j < arr.size(); j++){
+    //             currMin = std::min(currMin , arr[j]);
+    //             sum += currMin;
+    //             sum = sum % 1000000007;
+    //         }
+    //     }
+    //     return sum;
+    // }
+};
