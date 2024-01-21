@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int adjacent =0;
+        int oneHouseAway = 0;
+
+        int curr =0;
+
+        for(int i :nums){
+            curr = std::max(i+oneHouseAway , adjacent);
+            oneHouseAway = adjacent;
+            adjacent = curr;
+        }
+
+        return adjacent;
+    }
+};
