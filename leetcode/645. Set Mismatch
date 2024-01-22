@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> findErrorNums(vector<int>& nums) {
+        int lastNum =0;
+        vector<int> ans(2);
+        vector<int> hashmap(nums.size()+1 , 0);
+        for(const int& i:nums){
+            hashmap[i]++;
+        }
+
+        for(int i =1 ; i <= nums.size() ; i++){
+            lastNum = hashmap[i];
+            if(lastNum == 1){
+                continue;
+            }else if(lastNum == 2 ){
+                ans[0] = i;
+            }else if(lastNum == 0){
+                ans[1] = i;
+            }
+        }
+        return ans;
+    }
+};
