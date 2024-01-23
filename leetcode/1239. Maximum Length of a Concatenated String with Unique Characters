@@ -1,0 +1,29 @@
+class Solution {
+public:
+
+    bool unique(const string &input){
+        set<int>  _set(input.begin() , input.end());
+        return _set.size() == input.size();
+    }
+    int maxLength(vector<string>& arr) {
+        vector<string> comb{""};
+        vector<string> temp{""};
+        int maxLenght = 0;
+
+        string newString{};
+
+        for(const string &i : arr){
+            temp =  comb;
+            for(const string &j : comb){
+                newString = i+j;
+
+                if(unique(newString)){
+                    temp.push_back(newString);
+                    if(newString.size() > maxLenght)maxLenght =  newString.size();
+                }
+            }
+            comb = temp;
+        }
+        return maxLenght;        
+    }
+};
