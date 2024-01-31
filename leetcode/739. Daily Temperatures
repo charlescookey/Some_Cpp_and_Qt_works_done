@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures) {
+
+        std::stack<int> _stack{};
+        std::vector<int> ans(temperatures.size() , 0);
+
+        for(int i =0;  i < temperatures.size() ; i++){
+            while(!_stack.empty()  && temperatures[i] > temperatures[_stack.top()]){
+                ans[_stack.top()] = i - _stack.top();
+                _stack.pop();                               
+            } 
+            _stack.push(i);
+        }
+        return ans;
+    }
+};
