@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> sequentialDigits(int low, int high) {
+        int mindig = log10(low) + 1;
+        int maxdig = log10(high) + 1;
+        vector<int> ans{};
+        long temp =0;
+
+        for(int i = mindig ; i <= maxdig ; i++ ){
+            for(int j =1 ; j < 10 ; j++){
+                temp = seq(j , i);
+                if(temp < low)continue;
+                if(temp > high)break;
+
+                if(temp >= low && temp <= high)ans.push_back(temp);
+            }
+        }
+        return ans;
+    }
+
+    long seq(int start , int max){
+        string dig{};
+        if(max > 10 - start) return 0;
+        for(int i = 0 ; i < max ; i++){
+            dig += std::to_string(start+i); 
+        }
+        return std::stol(dig);
+    }
+};
