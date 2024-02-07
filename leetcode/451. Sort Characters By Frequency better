@@ -1,0 +1,26 @@
+class Solution {
+public:
+    string frequencySort(string s) {
+        std::unordered_map<char, int>hashmap{};
+
+        for(const char& a:s){
+            hashmap[a]++;
+        }
+
+        string ans{};
+        std::map<int , vector<char>>freqMap{};
+
+        for(const auto & [key , value] : hashmap){
+            freqMap[value].push_back(key);
+        }
+
+        for(const auto & [key , value] : freqMap){
+            for(const char& a: value){
+                ans += string(key ,a);
+            }
+        }
+
+        std::reverse(ans.begin(), ans.end());
+        return ans;
+    }
+};
