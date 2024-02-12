@@ -1,24 +1,18 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        std::map<int , int> hashmap{};
+        std::unordered_map<int , int> hashmap{};
+        int limit = nums.size() /2;
+        int ans =INT_MIN;
         
-        for(int i:nums){
+        for(const int &i:nums){
             hashmap[i]++;
+
+            if(hashmap[i] > limit )ans = max(ans , i);
         }
-        
-        int max =0, maxvalue = 0;
-        for(auto [a ,b]: hashmap){
-            if(b > maxvalue){
-                maxvalue = b;
-                max =a;
-            }
-        }
-        
-        return max;
+        return ans;
     }
 };
-
 
 
 here's an idea on how the next solution works; Its really funny considering the input constraints
