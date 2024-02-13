@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool isPalindrome(const std::string& input){
+        int end = input.size() - 1;
+        for(int i = 0 ; i <=  end/2 ; i++){
+            if(input[i] != input[end-i])return false;
+        }
+        return true;
+    }
+
+    string firstPalindrome(vector<string>& words) {
+        for(const string& word : words){
+            if(isPalindrome(word))return word;
+        }
+        return "";
+    }
+};
