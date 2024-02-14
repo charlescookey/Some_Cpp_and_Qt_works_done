@@ -27,11 +27,15 @@ public:
         
         vector<int> ans(nums.size() ,0);
         
-        for(int i:nums){
-            if(i > -1)ans[positive] =i , positive+=2;
-            else ans[negative] =i , negative += 2;
-        }
-        
+        for(const int& i:nums){
+            if(i > -1){
+                ans[positive] =i;
+                positive+=2;
+            }else{
+                ans[negative] =i; 
+                negative += 2;
+            } 
+        }   
         return ans;
     }
 };
