@@ -30,6 +30,11 @@ bit representation of 8  -> 1000
 bitwise AND of 7 and 8 -> 0000
 we are gonna use this property for for all numbers which are powers of two
 
+This is becuase a reset would always happeen at the power of 2, so you need 1 digit from 0-1 (< 2^1)
+you need two digits from 2 -3 (< 2^2)
+you need two digits from 4 -7 (< 2^3)
+you need two digits from 8 -15 (< 2^4)
+
 class Solution {
 public:
     bool isPowerOfTwo(int n) {
