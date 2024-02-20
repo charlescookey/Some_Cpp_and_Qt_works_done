@@ -7,11 +7,8 @@ public:
         for(int i =0 ; i < nums.size() ; i++){
             idealSum += i;
             accSum += nums[i];
-        }
-        
-        
-        return idealSum - accSum;
-        
+        }        
+        return idealSum - accSum;        
     }
 };
 
