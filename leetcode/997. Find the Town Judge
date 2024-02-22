@@ -1,53 +1,19 @@
-##Original slow solution
-
 class Solution {
 public:
     int findJudge(int n, vector<vector<int>>& trust) {
-        
-        if(trust.size() ==0 && n == 1)return n;
-        std::map<int , int> hashmap{};
-        for(auto a:trust){
-            hashmap[a[1]]++;
-        }
-        
-        int ans =0;
-        
-        for(auto a:hashmap){
-            if(a.second == n-1){
-                ans = a.first;
-                break;
-            }
-        }
-        if(ans == 0)return -1;
-        
-        for(auto a:trust){
-            if(ans == a[0])return -1;
-        }
-        
-        return ans;
-    }
-};
-
-##less slow Solution
-
-class Solution {
-public:
-    int findJudge(int n, vector<vector<int>>& trust) {
-        
         if(trust.size() ==0 && n == 1)return n;
         
-        std::map<int , int> hashmap{};
-        for(auto a:trust){
+        std::unordered_map<int , int> hashmap{};
+        for(const vector<int> &a:trust){
             hashmap[a[1]]++;
             hashmap[a[0]]--;
         }
         
-        for(auto a:hashmap){
+        for(const std::pair<int,int>& a:hashmap){
             if(a.second == n-1)
                 return a.first;
         }
         
         return -1;
-        
     }
 };
