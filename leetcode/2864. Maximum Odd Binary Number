@@ -1,0 +1,19 @@
+class Solution {
+public:
+    string maximumOddBinaryNumber(string s) {
+
+        std::sort(s.rbegin() , s.rend());
+
+        int lowest1 = 0;
+        for(int i = s.size() - 1; i > -1 ; i--){
+            if(s[i] == '1'){
+                lowest1 = i;
+                break;
+            }
+        }
+            
+        std::swap(s[lowest1] , s[s.size()-1]);
+
+        return s;
+    }
+};
