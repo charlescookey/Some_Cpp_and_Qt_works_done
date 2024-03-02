@@ -9,8 +9,31 @@ public:
     }
 };
 
+O(N) solution
 
-a way better o(n) solution, not by me though
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        vector<int> ans{};
+        int l =0;
+        int r = nums.size() -1;
+        while(l<=r){
+            if(std::abs(nums[l]) > std::abs(nums[r])){
+                ans.push_back(std::pow(nums[l] , 2));
+                l++;
+            }else{
+                ans.push_back(std::pow(nums[r] , 2));
+                r--;
+            }
+            
+        }
+        std::reverse(ans.begin() , ans.end());
+        return ans;
+        
+    }
+};
+
+Better condensed
 class Solution {
 public:
     vector<int> sortedSquares(vector<int>& A) {
