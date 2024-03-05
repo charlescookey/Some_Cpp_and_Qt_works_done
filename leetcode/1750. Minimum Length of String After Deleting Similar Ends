@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int minimumLength(string s) {
+        int size = s.size();
+        int l = 0; 
+        int r = s.size() - 1;
+        char  temp;
+
+        while(l < r) {
+            if(s[l]  == s[r]){
+                temp = s[l];
+
+                while(l < size && temp == s[l] ){
+                    l++;
+                }
+                while(r >= 0 && temp == s[r] ){
+                    r--;
+                }
+            }else break;
+        }
+        if(r < l )return 0;
+        return (r+1) - l;
+    }
+};
