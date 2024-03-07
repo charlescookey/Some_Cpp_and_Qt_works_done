@@ -1,29 +1,23 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        ListNode *temp = head;
-        int size = 0;
-        
-        while(temp->next != nullptr){
-            size++;
-            temp = temp->next;
+        ListNode* fast = head;
+        ListNode* slow = head;
+
+        while(slow && fast && fast->next){
+            slow = slow->next;
+            fast = fast->next->next;
         }
-        
-        temp = head;
-        size = size%2 == 0? size/2 : (size/2)+1;
-        
-        for(int i = 0 ; i < size ; i++){
-            temp = temp->next;
-        }
-        
-        return temp;
+        return slow;  
     }
 };
-
-another good idea i saw was 
-Two Pointer Algortihm or Tortoise and Hare Algorithm :
-
-    Initialize the two pointers slow and fast at the head of linked list .
-    Now every time, slow moves 1 step at a time while fast is moves 2 steps at a time. When fast pointer arrives at the end, slow pointer will arrive right in the middle of our linked list.
-    Now just return the value of slow pointer .
-Really cool
