@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int maxFrequencyElements(vector<int>& nums) {
+        std::unordered_map<int, int>hashmap{};
+
+        int maxFreq =0;
+        int ans =0;
+
+        for(const int &i : nums){
+            hashmap[i]++;
+                      
+            if(maxFreq == hashmap[i]){
+                ans += hashmap[i];
+            }else if(hashmap[i] > maxFreq ){
+                ans = hashmap[i];
+                maxFreq = hashmap[i];
+            }
+        }
+
+        return ans;        
+    }
+};
