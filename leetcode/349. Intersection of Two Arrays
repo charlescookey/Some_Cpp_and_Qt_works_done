@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        unordered_set<int>hashmap(nums1.begin() , nums1.end());
+
+        vector<int> ans{};
+
+        for(const int& i : nums2){
+            if(hashmap.count(i)){
+                ans.push_back(i);
+                hashmap.erase(i);
+            }
+        }
+        
+        return ans;
+    }
+};
