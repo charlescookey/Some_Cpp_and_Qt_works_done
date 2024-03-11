@@ -1,0 +1,16 @@
+class Solution {
+public:
+    string customSortString(string order, string s) {
+        unordered_map<int, int> hashmap{};
+        for(int i =0; i < order.size() ; i++){
+            hashmap[order[i]] = i;
+        }
+
+        std::sort(s.begin() , s.end() , [&](char& a, char& b){
+            return hashmap[a] < hashmap[b];
+        });
+
+        return s;
+        
+    }
+};
