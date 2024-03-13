@@ -1,0 +1,52 @@
+So the idea is very basic
+
+if we know the sum of 1-x == (x(x+1)) /2;
+the sum of x -n == (1->n) - (i->x) + x; (cause 1->n - 1->x ; gives you x+1 ->n , cause x wont be inclusive so we add x)
+
+and if we equate these teo we get x = sqrt((n(n+1))/2);
+
+So if that number is an integer, then that's the answer;
+
+
+class Solution {
+public:
+    int pivotInteger(int n) {
+        double sum = (pow(n,2) + n )/2;
+
+        double ans = sqrt(sum);
+
+        if(ans - ceil(ans) == 0)return ans;
+
+        return -1;
+        
+    }
+};
+
+int pivotInteger(int n) {
+        int l = 0;
+        int r =n;
+
+        int lsum =0;
+        int rsum =0;
+
+        while(l <= r){
+            if(lsum < rsum){
+                lsum += l;
+                l++;
+            }else if(rsum < lsum){
+                rsum += r;
+                r--;
+            }else{
+                if(lsum == rsum && l == r){
+                    return l;
+                }else{
+                    lsum += l;
+                    l++;
+                }
+            }
+        }
+        return -1;
+        
+    }
+
+
