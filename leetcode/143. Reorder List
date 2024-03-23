@@ -1,0 +1,40 @@
+//another cool idea is to use slow and fast, find the middle, and then revese the second half, and the slide in one by one
+//this doesn't use any extra O(n) space
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+        vector<ListNode*> vec{};
+        ListNode* curr = head;
+
+        while(curr != nullptr){
+            vec.push_back(curr);
+            curr = curr->next;
+        }
+
+        int l =0;
+        int r = vec.size() -1;
+
+        while(l < r ){
+            curr = vec[l]->next;
+            vec[l]->next = vec[r];
+            vec[r]->next = curr;
+            l++;
+            r--;
+        }
+
+        if(curr != nullptr)
+        curr->next = nullptr;
+    }
+};
