@@ -1,0 +1,15 @@
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        unordered_map<int,int> hashmap{};
+        vector<int> ans{};
+
+        for(const int &a:nums){
+            if(hashmap.count(a)){
+                ans.push_back(a);
+            }
+            hashmap[a]++;
+        }
+        return ans;
+    }
+};
