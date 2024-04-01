@@ -7,12 +7,10 @@ public:
         for(int i =s.size()-1 ; i > -1 ; i--){
             if(s[i] == ' '){
                 if(end)break;
-
             }else{
                 end = true;
                 count++;
             }
-            cout<<s[i]<<" "<<count<<"\n";
         }
         return count;
     }
