@@ -1,0 +1,50 @@
+class Solution {
+public:
+
+    //there is  cooler method that doesn't need a visited arraay, just cchange the char to ' ' 
+    //and this would ensire we can't access it again, and when were done, where we'd mark false we'd just return it to normal
+
+    int rows =0;
+    int cols =0;
+    int s =  0;
+
+    bool exist(vector<vector<char>>& board, string word) {
+        rows = board.size();
+        cols = board[0].size();
+        s = word.size();
+
+        vector<vector<bool>> visited(rows, vector<bool>(cols, false));
+
+        for(int i = 0 ; i < rows ; i++ ){
+            for(int j =0; j < cols ; j++){
+                if(dfs(board ,visited, word, 0 , i , j))return true;
+                visited = vector<vector<bool>>(rows, vector<bool>(cols, false));
+            }
+        }
+        return false;
+    }
+
+    bool dfs(vector<vector<char>>& board, vector<vector<bool>>& visited , string& word, int pos , int x, int y){
+        if(pos == s)return true;
+
+        if(x < 0 || x >= rows)return false;
+        if(y < 0 || y >= cols)return false;
+        if(pos >= s)return false;
+           
+        if(board[x][y] != word[pos])return false;
+
+        if(visited[x][y] )return false;
+        visited[x][y] = true;
+
+        if(dfs(board , visited, word , pos+1 , x+1 ,y) ||
+            dfs(board , visited, word , pos+1 , x-1 ,y) ||
+             dfs(board , visited, word , pos+1 , x ,y+1) ||
+              dfs(board , visited, word , pos+1 , x ,y-1)){
+                visited[x][y] = false;
+                return true;
+              }
+        visited[x][y] = false;
+        return false;
+
+    }
+};
