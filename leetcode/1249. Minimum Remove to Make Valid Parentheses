@@ -1,0 +1,38 @@
+//first if we see a closing that isn't valid we replace with ' '
+//then if at the end, the count is positive, it means there are some invalid opening, so we replace that with ' '
+
+//then we reconstruct the string removing all the ' '
+
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        string ans{};
+        int size = s.size();
+        int count =0;
+
+        for(int i = 0 ; i < size ; i++){
+            if(s[i] == '('){
+                count ++;
+            }else if(s[i] == ')'){
+                if(count == 0)s[i] = ' ';
+                else count --;
+            }
+        }
+
+        for(int i = size -1 ; i >= 0 ; i--){
+            if(count <= 0)break;
+            if(count >  0 && s[i] == '('){
+                s[i] = ' ';
+                count--;
+            }
+        }
+
+        for(const char &c: s){
+            if(c != ' '){
+                ans += c;
+            }
+        }
+
+        return ans;
+    }
+};
