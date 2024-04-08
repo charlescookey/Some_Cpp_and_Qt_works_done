@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int countStudents(vector<int>& students, vector<int>& sandwiches) {
+        int preferSquare = 0;
+        int preferCircle = 0;
+
+        for(int i : students){
+            if(i == 0)preferCircle ++;
+            else preferSquare ++;
+        }
+
+        for(int i : sandwiches){
+            if(i == 0 && preferCircle == 0)return preferSquare;
+            if(i == 1 && preferSquare == 0)return preferCircle;
+
+            if(i == 0)preferCircle --;
+            else preferSquare--;
+        }
+
+        return 0;
+        
+    }
+};
