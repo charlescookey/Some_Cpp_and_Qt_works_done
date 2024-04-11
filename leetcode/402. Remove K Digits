@@ -1,0 +1,38 @@
+class Solution {
+public:
+    string removeKdigits(string num, int k) {
+
+        if (num.size() == k)return "0";
+
+        int i = 0;
+        int size = num.size();
+        vector<char> s{};
+
+        for(int i =0; i < size ; i++){
+            while(!s.empty() && k > 0){
+                if(s.back() > num[i]){
+                    s.pop_back();
+                    k--;
+                }else{
+                    break;
+                }                    
+            }
+            s.push_back(num[i]);       
+        }
+
+        while( !s.empty()){
+            if(k > 0){
+                k--;
+            }else break;
+            s.pop_back();               
+        }
+
+        string ans{};
+        for(const char &a : s){
+            if(a == '0' && ans.empty())continue;
+            ans += a; 
+        }
+        return ans.empty()? "0" : ans;
+    }
+
+};
