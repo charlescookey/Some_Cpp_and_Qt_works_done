@@ -26,35 +26,15 @@ public:
 
         temp = char(curr->val + 97) + temp;
 
-        dfs(curr->right , temp);
-        dfs(curr->left , temp);
 
         if(curr->left == nullptr && curr->right == nullptr){
-            checkans(temp);
-        }
-    }
-
-    void checkans(string curr){
-        if(ans == ""){
-            ans = curr;
-            return;
-        }
-        int size = std::min(curr.size() , ans.size());
-
-        for(int i =0; i < size ; i++){
-            if(ans[i] == curr[i]){
-                continue;
-            }else if(ans[i] > curr[i]){
-                ans = curr;
-                return;
-            }else{
-                return;
+            if(ans == "" || ans > temp){
+                ans = temp;
             }
-        }
-
-        if(size != ans.size()){
-            ans = curr;
             return;
         }
+
+        dfs(curr->left , temp);
+        dfs(curr->right , temp);
     }
 };
