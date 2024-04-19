@@ -1,34 +1,38 @@
 class Solution {
 public:
-    map<pair<int , int> , bool> visited{};
-    vector<vector<char>> image;
+    vector<vector<bool>> visited{};
+    int rows = 0;
+    int cols = 0;
     
     int numIslands(vector<vector<char>>& grid) {
         int ans =0;
-        image = grid;
-        for(int i=0 ; i < grid.size() ; i++){
-            for(int j = 0 ; j < grid[0].size() ; j++){
+        rows = grid.size();
+        cols = grid[0].size(); 
+        visited = vector<vector<bool>>(rows, vector<bool>(cols , false));
+
+        for(int i=0 ; i < rows ; i++){
+            for(int j = 0 ; j < cols ; j++){
                 if(grid[i][j] == '0')continue;
-                if(visited.count({i , j}) >0)continue;
+                if(visited[i][j])continue;
                 ans++;
-                DFS_visit( i ,j ); 
+                DFS_visit( i ,j ,  grid); 
             }
         }
         return ans;
         
     }
     
-    void  DFS_visit(int sr, int sc){
-        if(sr < 0 || sr >= image.size())return;
-        if(sc < 0 || sc >= image[0].size())return;
-        if(visited.count({sr , sc}) >0)return;
+    void  DFS_visit(int sr, int sc , vector<vector<char>>& image){
+        if(sr < 0 || sr >= rows)return;
+        if(sc < 0 || sc >= cols)return;
+        if(visited[sr][sc])return;
         if(image[sr][sc] == '0')return;
         
-        visited[{sr , sc}] = true;
+        visited[sr][sc] = true;
         
-        DFS_visit( sr-1 ,sc );
-        DFS_visit( sr+1 ,sc );
-        DFS_visit( sr ,sc-1 );
-        DFS_visit( sr ,sc+1 );   
+        DFS_visit( sr-1 ,sc , image);
+        DFS_visit( sr+1 ,sc , image);
+        DFS_visit( sr ,sc-1 ,image);
+        DFS_visit( sr ,sc+1 , image);   
     }
 };
