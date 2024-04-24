@@ -1,19 +1,20 @@
 class Solution {
 public:
-    std::map<int , int> hashmap{};
+    std::vector<int> _map{};
     int tribonacci(int n) {
-        hashmap[0] =0;
-        hashmap[1] =1;
-        hashmap[2] =1;
+        _map = vector<int>(38 , -1);
+        _map[0] =0;
+        _map[1] =1;
+        _map[2] =1;
         
         return dfs(n);
     }
     
     int dfs(int n){
         if(n<0)return 0;
-        if(hashmap.count(n) > 0)return hashmap[n];
+        if(_map[n] != -1)return _map[n];
         
-        hashmap[n] = dfs(n-1) + dfs(n-2) + dfs(n-3);
-        return hashmap[n];
+        _map[n] = dfs(n-1) + dfs(n-2) + dfs(n-3);
+        return _map[n];
     }
 };
