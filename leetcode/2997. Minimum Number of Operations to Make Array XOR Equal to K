@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int k) {
+        int xorOutput = 0;
+
+        for(int num : nums){
+            xorOutput ^= num;
+        }
+
+        int ans = 0;
+
+        while(xorOutput || k ){
+            if(k % 2 != xorOutput % 2 )ans ++;
+
+            k /= 2;
+            xorOutput /= 2;
+        }
+
+        return ans;
+        //return __builtin_popcount(finalXor ^ k);
+    }
+};
