@@ -1,0 +1,49 @@
+class Solution {
+public:
+
+    vector<int> splitToArray(string version){
+        vector<int> ans{};
+        string temp{};
+        int digit =0;
+        version.push_back('.');
+
+        for(char a: version){
+            if(a != '.'){
+                temp += a;
+            }else{
+                digit = stoi(temp);
+                ans.push_back(digit);
+                temp.clear();
+            }
+        }
+
+        return ans;
+    }
+    int compareVersion(string version1, string version2) {
+        vector<int> v1 = splitToArray(version1);
+        vector<int> v2 = splitToArray(version2);
+
+        int s1 = v1.size();
+        int s2 = v2.size();
+
+        int size = std::max(s1,s2);
+
+        int t1 = 0;
+        int t2 = 0;
+
+        for(int i = 0 ; i < size ; i++){
+            if(i < s1){
+                t1 = v1[i];
+            }else t1 =0;
+
+            if(i < s2){
+                t2 = v2[i];
+            }else t2 = 0;
+
+            if(t1 < t2)return -1;
+            if(t1 > t2)return 1;
+        }        
+
+        return 0;
+    }
+};
