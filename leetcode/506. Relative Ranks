@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<string> findRelativeRanks(vector<int>& score) {
+        std::unordered_map<int,int> hashmap{};
+
+        for(int i =0 ; i < score.size() ; i++){
+            hashmap[score[i]] = i;
+        }
+
+        std::sort(score.rbegin() , score.rend());
+
+        vector<string> ans(score.size() , "");
+
+        for(int i =0 ; i < score.size() ; i++){
+            ans[hashmap[score[i]]] = pos(i+1);
+        }
+        return ans;        
+    }
+
+    string pos(int i){
+        switch(i){
+            case 1 :
+                return "Gold Medal";
+            case 2:
+                return "Silver Medal";
+            case 3:
+                return "Bronze Medal";
+            default:
+                return std::to_string(i);
+        }
+        return "";
+    }
+};
