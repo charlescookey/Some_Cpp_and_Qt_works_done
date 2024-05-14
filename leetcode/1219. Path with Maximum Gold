@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int cols =0;
+    int rows =0;
+    int getMaximumGold(vector<vector<int>>& grid) {
+        rows = grid.size();
+        cols = grid[0].size();
+
+        int ans = 0;
+
+        for(int i =0; i < rows ; i++){
+            for(int j =0; j < cols ; j++){
+                ans = max(ans , dfs(grid, i , j));
+            }
+        }
+        return ans;        
+    }
+
+    int dfs(vector<vector<int>>& grid , int row, int col ){
+        if(row < 0 || row >= rows)return 0;
+        if(col < 0 || col >= cols)return 0;
+
+        int curr = grid[row][col];
+        int _max = 0;
+
+        if(curr == 0)return 0;
+
+        grid[row][col] =  0;
+
+        _max = max(_max , dfs(grid, row+1 , col));
+        _max = max(_max , dfs(grid, row-1 , col));
+        _max = max(_max , dfs(grid, row , col+1));
+        _max = max(_max , dfs(grid, row , col-1));
+
+        grid[row][col] = curr;
+
+        return curr + _max;
+    }
+};
