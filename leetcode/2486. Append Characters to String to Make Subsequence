@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int appendCharacters(string s, string t) {
+        int _s = 0;
+        int _t = 0;
+
+        while(_s < s.size() && _t <t.size()){
+            if(s[_s] == t[_t]){
+                _t++;
+            }
+            _s++;
+        }
+
+        return t.size() -_t;      
+    }
+};
