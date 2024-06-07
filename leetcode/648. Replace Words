@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string replaceWords(vector<string>& dictionary, string sentence) {
+        std::unordered_set<string> _set(dictionary.begin(), dictionary.end());
+
+        std::stringstream ss(sentence);
+
+        string token;
+        string ans;
+        
+        while (getline(ss, token, ' ')) {
+            string temp = "";
+            string curr = "";
+            for(char a : token){
+                temp += a;
+
+                if(_set.count(temp)){
+                    curr = temp;
+                    break;
+                }
+            }
+            if(curr  == "")ans += token;
+            else ans += temp;
+
+            ans+= " ";
+        }
+        ans.pop_back();
+        return ans;       
+    }
+};
