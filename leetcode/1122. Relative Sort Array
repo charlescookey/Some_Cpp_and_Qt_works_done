@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
+        int x =0;
+        std::unordered_map<int, int> hashmap{};
+
+        for(int i : arr2){
+            hashmap[i] = x++;
+        }
+    
+        std::sort(arr1.begin() , arr1.end() , [&](int a , int b){
+            if(hashmap.count(a))a = hashmap[a];
+            else a += x ;
+
+            if(hashmap.count(b))b = hashmap[b];
+            else b += x ;
+
+            return a < b;
+        });
+
+        return arr1;        
+    }
+};
