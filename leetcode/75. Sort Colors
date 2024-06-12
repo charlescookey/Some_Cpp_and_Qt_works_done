@@ -1,0 +1,18 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        std::unordered_map<int , int> hashmap{};
+
+        for(int i : nums){
+            hashmap[i]++;
+        }
+
+        int y =0;
+
+        for(int i =0; i < 3 ; i++){
+            for(int x =0; x < hashmap[i] ; x++){
+                nums[y++] = i;
+            }
+        }
+    }
+};
