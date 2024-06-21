@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {
+        int size = customers.size();
+
+        int windowSum = 0;
+        for(int i =0; i < minutes ; i++){
+            windowSum += customers[i] * grumpy[i];
+        }
+
+        int maxWindow = windowSum;
+
+        for(int i = minutes ; i < size ; i++){
+            windowSum += customers[i] * grumpy[i];
+
+            windowSum -= customers[i - minutes] * grumpy[i - minutes];
+
+            maxWindow = std::max(windowSum , maxWindow);
+        }
+
+        for(int i =0; i < size ; i++){
+            maxWindow += customers[i] * (1 - grumpy[i]);
+        }
+
+        return maxWindow;
+    }
+};
