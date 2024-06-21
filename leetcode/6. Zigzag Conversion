@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        if(numRows == 1)return s;
+        std::vector<string> strs(numRows , "");
+
+        int row = 0;
+        bool down = false;
+
+        for(const char &a : s){
+            strs[row].push_back(a);
+
+            if(row == numRows - 1 || row == 0) down = !down;
+
+            if(down)row++;
+            else row--;
+        }
+
+        string ans{};
+
+        for(const string &a : strs){
+            ans += a;
+        }
+        
+        return ans;
+    }
+};
