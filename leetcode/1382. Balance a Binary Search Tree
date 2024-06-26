@@ -1,0 +1,41 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> values;
+    int size = 0;
+    TreeNode* balanceBST(TreeNode* root) {
+        inorder(root);
+        size = values.size();
+        return makeBST(0 , size-1);        
+    }
+
+    TreeNode* makeBST(int left , int right){
+        if(left > right)return nullptr;
+        if(left < 0 || right >size) return nullptr;
+
+        int center = (left + (right-left)/2);
+
+        TreeNode* l = makeBST(left , center - 1);
+        TreeNode* r = makeBST(center + 1 , right);
+
+        return new TreeNode(values[center] , l, r);
+    }
+
+    void inorder(TreeNode* curr){
+        if(curr  ==  nullptr)return;
+
+        inorder(curr->left);
+        values.push_back(curr->val);
+        inorder(curr->right);
+    }
+};
