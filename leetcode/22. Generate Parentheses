@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<string> ans;
+    int len = 0;
+    vector<string> generateParenthesis(int n) {
+        len =n;
+        gen(0 , 0 , "");
+        return ans;
+    }
+
+    void gen(int open , int close , string curr){
+        if(open == len && close == len){
+            ans.push_back(curr);
+            return;
+        }
+        if(close < len && open > close)
+            gen(open , close + 1 , curr + ')');
+        if(open < len)
+            gen(open + 1 , close , curr + '(' );
+
+    }
+};
