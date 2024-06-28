@@ -1,0 +1,21 @@
+class Solution {
+public:
+    long long maximumImportance(int n, vector<vector<int>>& roads) {
+        std::vector<long long> neighbours(n , 0);
+
+        for(const vector<int>& i : roads){
+            neighbours[i[0]]++;
+            neighbours[i[1]]++;
+        }
+
+        sort(neighbours.begin() , neighbours.end() );
+
+        long long ans = 0;
+
+        for(int i = 0; i < n ; i++){
+            ans += (i+1) * neighbours[i];
+        }
+
+        return ans;       
+    }
+};
