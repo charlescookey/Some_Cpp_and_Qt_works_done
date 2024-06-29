@@ -1,0 +1,27 @@
+class Solution {
+public:
+    std::unordered_map<int,vector<int>> parents{};
+    vector<vector<int>> getAncestors(int n, vector<vector<int>>& edges) {
+        vector<vector<int>> ans;
+
+        for(vector<int> a : edges){
+            parents[a[1]].push_back(a[0]);
+        }
+
+        for(int i = 0; i < n ; i++){
+            set<int> temp{};
+            fillParents(i , temp);
+            vector<int> vec(temp.begin() , temp.end());
+            ans.push_back(vec);
+        }
+        return ans;        
+    }
+
+    void fillParents(int n , set<int>& pp){
+        for(int i : parents[n]){
+            if(pp.count(i))continue;
+            pp.insert(i);
+            fillParents(i , pp);
+        }
+    }
+};
