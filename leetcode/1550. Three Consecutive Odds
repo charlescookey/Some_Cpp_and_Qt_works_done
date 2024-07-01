@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool threeConsecutiveOdds(vector<int>& arr) {
+        int consecutive =0;
+
+        for(int i : arr){
+            if(i % 2 != 0){
+                if(++consecutive == 3) return true;
+            }else consecutive =0;
+        }
+        return false;        
+    }
+};
+
+more pleasing to loook at
+class Solution {
+public:
+    bool threeConsecutiveOdds(vector<int>& arr) {
+        int consecutive =0;
+
+        for(int i : arr){
+            if(i % 2 == 0){
+                consecutive =0;
+                continue;
+            }
+
+            if(++consecutive == 3)
+            return true;
+        }
+        return false;        
+    }
+};
