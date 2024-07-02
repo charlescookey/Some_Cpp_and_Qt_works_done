@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        std::unordered_map<int , int>hashmap{};
+        vector<int> ans;
+
+        for(const int &i : nums1){
+            hashmap[i]++;
+        } 
+
+        for(const int &i : nums2){
+            if(hashmap[i]){
+                hashmap[i]--;
+                ans.push_back(i);
+            }
+        }
+        return ans;
+    }
+};
