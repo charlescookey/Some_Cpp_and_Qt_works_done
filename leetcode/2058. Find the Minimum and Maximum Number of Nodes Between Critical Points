@@ -18,23 +18,23 @@ public:
         int firstCric = -1;
         int minDis = INT_MAX;
 
-        while(temp != nullptr){
-            if(temp->val > last && temp->next && temp->val > temp->next->val
-                || temp->val < last &&temp->next && temp->val < temp->next->val){
+        while(temp->next != nullptr){
+            if(temp->val > last && temp->val > temp->next->val
+                || temp->val < last && temp->val < temp->next->val){
                     if(lastCric == -1){
-                        firstCric = counter;
+                        firstCric = counter;     
                     }else {
-                        minDis = min(minDIs , couunter - lastCric);
-                        lastCric = counter;
+                        minDis = min(minDis , counter - lastCric);
                     }
-                }
-            } 
+                    lastCric = counter;
+            }
+             
             last = temp->val;
             temp = temp->next;
             counter++;   
         }
 
-        if(minDis == INT_MAX )return {-1,-1};
+        if(minDis == INT_MAX ) return {-1,-1};
 
         return {minDis ,lastCric -  firstCric};               
     }
