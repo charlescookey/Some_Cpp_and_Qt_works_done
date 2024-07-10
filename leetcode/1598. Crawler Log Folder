@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int minOperations(vector<string>& logs) {
+        int level =0;
+        for(const string &a : logs ){
+            if(a == "../"){
+                level = max(level-1 , 0);
+            }else if(a != "./"){
+                level ++;
+            }
+        }
+        return level;        
+    }
+};
