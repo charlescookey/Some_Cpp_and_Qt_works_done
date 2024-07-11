@@ -1,0 +1,27 @@
+one way is to add the non parenthesis to the new string , and reverse from start of last open to end of string, hence using one loop
+
+class Solution {
+public:
+    string reverseParentheses(string s) {
+        std::stack<int> _stack;
+        string ans{};
+        int start =0;
+
+        for(int i =0 ; i < s.size() ; i++){
+            if(s[i] == '('){
+                _stack.push(i);
+            }else if(s[i] == ')'){
+                start = _stack.top();
+                _stack.pop();
+
+                std::reverse(s.begin() + start , s.begin() + i);
+            }
+
+        }
+        for(const char &a : s){
+            if( a != '(' && a != ')' )
+                ans += a;
+        }
+        return ans;
+    }
+};
