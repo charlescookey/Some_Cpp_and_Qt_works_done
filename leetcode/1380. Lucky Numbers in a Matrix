@@ -1,0 +1,56 @@
+There can olny be one lucky in the entire array,  so we just need to find the rowMinMax an colMaxMin
+class Solution {
+public:
+    vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+        int rowMinMax  = 0;
+        int colMaxMin = INT_MAX;
+        int temp = INT_MAX;
+
+        for(int i =0 ; i < matrix.size() ; i++){
+            temp = INT_MAX;
+            for(int j =0 ; j < matrix[0].size() ; j++){
+                temp = min(matrix[i][j] , temp);
+            }
+            rowMinMax = max(temp , rowMinMax);
+        }
+
+        for(int j =0 ; j < matrix[0].size() ; j++){
+            temp = 0;
+            for(int i =0 ; i < matrix.size() ; i++){
+                temp = max(matrix[i][j] , temp);
+            }
+            colMaxMin = min(temp , colMaxMin);
+        }
+        if (colMaxMin == rowMinMax)return {colMaxMin};
+        return {};
+    }
+};
+
+
+
+
+
+
+regular 
+class Solution {
+public:
+    vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+        vector<int> row(matrix.size() , INT_MAX);
+        vector<int> col(matrix[0].size() ,0);
+        vector<int> lucky{};
+
+        for(int i =0 ; i < matrix.size() ; i++){
+            for(int j =0 ; j < matrix[0].size() ; j++){
+                row[i] = min(matrix[i][j] , row[i]);
+                col[j] = max(matrix[i][j] , col[j]);
+            }
+        }
+
+        for(int i =0 ; i < matrix.size() ; i++){
+            for(int j =0 ; j < matrix[0].size() ; j++){
+                if(row[i] == matrix[i][j] && matrix[i][j] == col[j])lucky.push_back(matrix[i][j]);
+            }
+        } 
+        return lucky;
+    }
+};
