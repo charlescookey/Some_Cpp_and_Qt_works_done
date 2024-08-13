@@ -1,0 +1,42 @@
+class ParkingSystem {
+public:
+
+    int maxSmall;
+    int maxMid;
+    int maxBig;
+
+
+    ParkingSystem(int big, int medium, int small):maxBig(big), maxMid(medium),maxSmall(small) {
+    }
+    
+    bool addCar(int carType) {
+        switch(carType){
+            case 1:
+                if(maxBig > 0){
+                    maxBig--;
+                    return true;
+                }
+                return false;
+            case 2:
+                if(maxMid >  0){
+                    maxMid--;
+                    return true;
+                }
+                return false;
+            case 3:
+                if(maxSmall > 0){
+                    maxSmall--;
+                    return true;
+                }
+                return false;
+        }
+        return false;
+        
+    }
+};
+
+/**
+ * Your ParkingSystem object will be instantiated and called as such:
+ * ParkingSystem* obj = new ParkingSystem(big, medium, small);
+ * bool param_1 = obj->addCar(carType);
+ */
