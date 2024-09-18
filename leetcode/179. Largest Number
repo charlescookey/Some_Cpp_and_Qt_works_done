@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string largestNumber(vector<int>& nums) {
+        vector<string> numString{};
+
+        for(int i:nums){
+            numString.push_back(to_string(i));
+        }
+
+        std::sort(numString.begin() , numString.end() , [](string a, string b){
+            return a+b > b+a;
+        });
+
+        if (numString[0] == "0") return "0";
+
+        string ans{};
+        for(const string& i:numString){
+            ans += i;
+        }
+        return ans;        
+    }
+};
