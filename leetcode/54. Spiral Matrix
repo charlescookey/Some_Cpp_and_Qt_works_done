@@ -1,0 +1,74 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int minRow = 0;
+        int minCol = 0;
+        int maxRow = matrix.size() - 1;
+        int maxCol = matrix[0].size() -1;
+        int NumElements = (maxRow+1) * (maxCol+1);
+        char IntToChar[1024];
+
+        vector<int> ans{};
+
+
+        int curr = 0;
+        int i = 0;
+        int j = 0;
+        int index = 0;
+        int direction = 0;
+        bool change = false;
+
+        while (curr < NumElements) {
+            if (!change) {
+                ans.push_back(matrix[i][j]);
+                curr++;
+            }
+            
+            if (direction == 0) {
+                if (j < maxCol) {
+                    j++;
+                    change = false;
+                }
+                else {
+                    direction++;
+                    minRow++;
+                    change = true;
+                }
+            }else if (direction == 1) {
+                if (i < maxRow) {
+                    i++;
+                    change = false;
+                }
+                else {
+                    direction++;
+                    maxCol--;
+                    change = true;
+                }
+            }else if (direction == 2) {
+                if (j > minCol) {
+                    j--;
+                    change = false;
+                }
+                else {
+                    direction++;
+                    maxRow--;
+                    change = true;
+                }
+            }else if (direction == 3) {
+                if (i > minRow) {
+                    i--;
+                    change = false;
+                }
+                else {
+                    direction++;
+                    minCol++;
+                    change = true;
+                }
+            }
+
+            direction %= 4;
+        }
+        return ans;  
+    }      
+
+};
