@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int size =0;
+    vector<int> shortestDistanceAfterQueries(int n, vector<vector<int>>& queries) {
+        size = n;
+        vector<int> shortest(n, INT_MAX);
+        unordered_map<int , vector<int>> roads;
+        vector<int> ans;
+
+        for(int i=0; i < n-1; i++){
+            roads[i].push_back(i+1);
+        }
+
+        dfs(shortest,roads,0,0);
+        
+        for(vector<int>& a: queries){
+            roads[a[0]].push_back(a[1]);
+            dfs(shortest,roads,a[0],shortest[a[0]]);
+            ans.push_back(shortest[n-1]);
+        }
+        
+        return ans;
+    }
+
+    void dfs(vector<int>& shortest ,unordered_map<int , vector<int>>& roads , int curr , int distance){
+        if(curr>= size)return;
+        if(distance > shortest[curr])return;
+        shortest[curr] = distance;
+        for(int i: roads[curr]){
+            dfs(shortest , roads,i , distance+1);
+        } 
+    }
+};
