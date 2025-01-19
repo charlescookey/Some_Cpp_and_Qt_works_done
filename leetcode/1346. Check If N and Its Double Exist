@@ -1,0 +1,13 @@
+class Solution {
+public:
+    bool checkIfExist(vector<int>& arr) {
+        std::set<int> _set{};
+
+        for(int i : arr){
+            if(_set.contains(i*2))return true;
+            if(i%2==0 && _set.contains(i/2))return true;
+            _set.insert(i);
+        }
+        return false;
+    }
+};
