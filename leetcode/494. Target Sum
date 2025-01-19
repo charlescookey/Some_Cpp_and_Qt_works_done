@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int findTargetSumWays(vector<int>& nums, int target) {
+        vector<int> frontier = {0};
+        vector<int> next{};
+        int count =0;
+        for(const int &i:nums){
+            next.clear();
+            for(const int &j : frontier){
+                next.push_back(j + i);
+                next.push_back(j - i);
+            }
+            frontier = next;
+        }
+        for(const int& i: frontier){
+            if(i ==target){
+                count++;
+            }
+        }
+        return count;
+    }
+};
