@@ -1,0 +1,31 @@
+/*
+There's a way better math formula. 
+https://leetcode.com/problems/find-missing-and-repeated-values/editorial/?envType=daily-question&envId=2025-03-06
+*/
+
+
+
+class Solution {
+public:
+    vector<int> findMissingAndRepeatedValues(vector<vector<int>>& grid) {
+        std::unordered_set<int> _set{};
+        int repeated =0;
+        int sum =0;
+        for(auto a: grid){
+            for(auto b: a){
+                if(_set.contains(b)){
+                    repeated = b;
+                }
+                _set.insert(b);
+                sum += b;
+            }
+        }
+        sum -= repeated;
+
+        int max =std::pow(grid.size(),2);
+        int total = max *(max + 1) /2;
+        int missing = total - sum;
+
+        return {repeated,missing};
+    }
+};
