@@ -1,0 +1,38 @@
+class Solution {
+public:
+
+    bool isPrime(int num){
+        if(num <= 1)return false;
+        if(num <= 3)return true;
+        if(num % 2 == 0) return false;
+        for(int i = 2 ; i*i <= num ;i++){
+            if(num % i == 0)return false;
+        }
+
+        return true;
+    }
+
+    vector<int> closestPrimes(int left, int right) {
+        int prevPrime = -1;
+        int diff = INT_MAX;
+        int newdiff = INT_MAX;
+        int a = -1,b = -1;
+        for(int i = left ; i <= right ; i++){
+            if(isPrime(i)){
+
+                if(prevPrime != -1){
+                    newdiff = i - prevPrime;
+                    if(newdiff < diff){
+                        diff = newdiff;
+                        b = i;
+                        a = prevPrime;
+                    }
+                }
+                if (diff == 2 or diff == 1)break;
+                prevPrime = i;
+
+            }
+        }
+        return {a,b};
+    }
+};
