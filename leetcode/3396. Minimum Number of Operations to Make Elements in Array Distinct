@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int minimumOperations(vector<int>& nums) {
+        std::unordered_set<int> _set{};
+        int i;
+        for(i = nums.size() -1 ; i >= 0 ; i--){
+            if(_set.contains(nums[i]))break;
+            _set.insert(nums[i]);
+        }
+        return (i+3)/3;
+    }
+};
