@@ -1,0 +1,53 @@
+class Solution {
+public:
+    string smallestEquivalentString(string s1, string s2, string baseStr) {
+        std::vector<string>  groups;
+        std::unordered_map<char, int> groupId{};
+        int id = 0;
+        string temp{};
+
+        for(int i =0; i < s1.size() ; i++){
+            if(groupId.count(s1[i]) == 0 &&  groupId.count(s2[i]) == 0){
+                id = groups.size() ;
+                groupId[s1[i]] = id;
+                groupId[s2[i]] = id;
+                temp = "";
+                temp += s1[i];
+                if(s1[i] != s2[i])temp += s2[i];
+
+                groups.push_back(temp);
+            }else if(groupId.count(s1[i]) == 0){
+                id = groupId[s2[i]];
+                groups[id]+= s1[i];
+                groupId[s1[i]] = id;
+            }else if(groupId.count(s2[i]) == 0){
+                id = groupId[s1[i]];
+                groups[id]+= s2[i];
+                groupId[s2[i]] = id;
+            }else{
+                if(s2[i] == s1[i])continue;
+                int id2 = groupId[s2[i]];
+                id = groupId[s1[i]];
+
+                if(id2 == id)continue;
+
+
+                for(char a : groups[id2]){
+                    groups[id]+= a;
+                    groupId[a] = id;
+                }
+            }
+        }
+
+        for(string &a: groups){
+            std::sort(a.begin() , a.end());
+        }
+        string ans{};
+        for(char a: baseStr){
+            if(groupId.count(a) == 0){ans += a; }
+            else
+            ans+= groups[groupId[a]][0];
+        }
+        return ans;   
+    }
+};
