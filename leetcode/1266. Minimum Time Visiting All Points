@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int minTimeToVisitAllPoints(vector<vector<int>>& points) {
+        vector<int> last_point = points[0];
+        int ans = 0;
+
+        for(vector<int> a : points){
+            ans += std::max(std::abs(a[0] - last_point[0]) , std::abs(a[1] - last_point[1]));
+            last_point = a;
+        }
+
+        return ans;
+    }
+};
